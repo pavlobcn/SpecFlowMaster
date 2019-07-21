@@ -13,10 +13,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SpecFlowFeature.feature.cs">
+    <Compile Update="A.feature.master.cs">
+      <Visible>true</Visible>
+      <DependentUpon>%(Filename)</DependentUpon>
+      <DesignTime>true</DesignTime>
+      <AutoGen>true</AutoGen>
+    </Compile>
+    <Compile Update="SpecFlowTarget.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SpecFlowFeature.feature</DependentUpon>
+      <DependentUpon>SpecFlowTarget.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -27,9 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="SpecFlowFeature.feature">
+    <SpecFlowFeatureFiles Update="SpecFlowTarget.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SpecFlowFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>SpecFlowTarget.feature.cs</LastGenOutput>
       <Generator Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></Generator>
     </SpecFlowFeatureFiles>
   </ItemGroup>

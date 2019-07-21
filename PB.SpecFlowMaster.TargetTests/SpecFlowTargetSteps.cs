@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace PB.SpecFlowMaster.TargetTests
 {
     [Binding]
-    public class SpecFlowFeatureSteps
+    public class SpecFlowTargetSteps
     {
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
