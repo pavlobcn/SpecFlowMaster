@@ -4,7 +4,7 @@
 	I want to be told the sum of two numbers
 
 @mytag
-Scenario: Add two numbers
+Scenario: Add two numbers new12345
 	Given I have entered 50 into the calculator
 	And I have entered 70 into the calculator
 	When I press add

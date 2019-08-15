@@ -9,6 +9,7 @@ namespace PB.SpecFlowMaster.TargetTests
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
+            Tmp();
             //ScenarioContext.Current.Pending();
         }
         
@@ -22,6 +23,11 @@ namespace PB.SpecFlowMaster.TargetTests
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
             //ScenarioContext.Current.Pending();
+        }
+
+        public static void Tmp()
+        {
+            //var a = new SampleGeneratorPlugin();
         }
     }
 }
