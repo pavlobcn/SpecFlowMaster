@@ -1,7 +1,7 @@
 ﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>SpecFlow.SamplePlugin</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>SpecFlow.SamplePlugin</title>
     <authors>TechTalk</authors>
     <owners>TechTalk</owners>

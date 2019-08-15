@@ -6,7 +6,6 @@ using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.UnitTestProvider;
 
 [assembly:GeneratorPlugin(typeof(SampleGeneratorPlugin))]
-
 namespace GeneratorPlugin
 {
     public class SampleGeneratorPlugin : IGeneratorPlugin
@@ -14,12 +13,15 @@ namespace GeneratorPlugin
         public void Initialize(GeneratorPluginEvents generatorPluginEvents, GeneratorPluginParameters generatorPluginParameters,
             UnitTestProviderConfiguration unitTestProviderConfiguration)
         {
+            System.Diagnostics.Debugger.Launch();
             unitTestProviderConfiguration.UseUnitTestProvider("MyProvider");
-            generatorPluginEvents.CustomizeDependencies += GeneratorPluginEvents_CustomizeDependencies;
+            //generatorPluginEvents.CustomizeDependencies += GeneratorPluginEvents_CustomizeDependencies;
+            generatorPluginEvents.RegisterDependencies += GeneratorPluginEvents_CustomizeDependencies;
         }
 
-        private void GeneratorPluginEvents_CustomizeDependencies(object sender, CustomizeDependenciesEventArgs e)
+        private void GeneratorPluginEvents_CustomizeDependencies(object sender, RegisterDependenciesEventArgs e)
         {
+            System.Diagnostics.Debugger.Launch();
             e.ObjectContainer.RegisterTypeAs<MyGeneratorProvider, IUnitTestGeneratorProvider>("MyProvider");
         }
     }
@@ -28,6 +30,7 @@ namespace GeneratorPlugin
     {
         public MyGeneratorProvider(CodeDomHelper codeDomHelper) : base(codeDomHelper)
         {
+            System.Diagnostics.Debugger.Launch();
         }
     }
 }
