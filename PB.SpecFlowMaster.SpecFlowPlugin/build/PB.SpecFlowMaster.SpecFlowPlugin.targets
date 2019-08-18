@@ -1,0 +1,9 @@
+﻿<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_SpecFlowMasterSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' == 'Core'">netstandard2.0</_SpecFlowMasterSpecFlowPluginFramework>
+    <_SpecFlowMasterSpecFlowPluginFramework Condition=" '$(MSBuildRuntimeType)' != 'Core'">net471</_SpecFlowMasterSpecFlowPluginFramework>
+
+    <_SpecFlowMasterSpecFlowPluginPath>$(MSBuildThisFileDirectory)\$(_SpecFlowMasterSpecFlowPluginFramework)\PB.SpecFlowMaster.SpecFlowPlugin.dll</_SpecFlowMasterSpecFlowPluginPath>
+
+  </PropertyGroup>
+</Project>
