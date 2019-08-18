@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <NuspecFile>$(MSBuildThisFileDirectory)SamplePlugin.nuspec</NuspecFile>
+    <NuspecFile>$(MSBuildThisFileDirectory)SpecflowMasterPlugin.nuspec</NuspecFile>
     <AssemblyName>PB.SpecFlowMaster.SpecFlowPlugin</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
@@ -12,6 +12,13 @@
 
   <ItemGroup>
     <PackageReference Include="SpecFlow.CustomPlugin" Version="3.0.225" />
+    <PackageReference Include="Utf8Json" Version="1.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>C:\Users\Arsenal\.nuget\packages\system.configuration.configurationmanager\4.5.0\ref\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 
