@@ -93,8 +93,56 @@ this.ScenarioInitialize(scenarioInfo);
         }
     }
     
-    public class abc
+    public class MasterTests
     {
+        
+        private void TestLine8()
+        {
+            bool noExceptionOccured = true;
+            try
+            {
+            }
+            catch (System.Exception )
+            {
+                noExceptionOccured = false;
+            }
+            if (noExceptionOccured)
+            {
+                throw new System.Exception("Line 8 is suspicious.");
+            }
+        }
+        
+        private void TestLine9()
+        {
+            bool noExceptionOccured = true;
+            try
+            {
+            }
+            catch (System.Exception )
+            {
+                noExceptionOccured = false;
+            }
+            if (noExceptionOccured)
+            {
+                throw new System.Exception("Line 9 is suspicious.");
+            }
+        }
+        
+        private void TestLine11()
+        {
+            bool noExceptionOccured = true;
+            try
+            {
+            }
+            catch (System.Exception )
+            {
+                noExceptionOccured = false;
+            }
+            if (noExceptionOccured)
+            {
+                throw new System.Exception("Line 11 is suspicious.");
+            }
+        }
     }
 }
 #pragma warning restore

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.CodeDom;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Gherkin.Ast;
 using TechTalk.SpecFlow.Parser;
 
@@ -12,8 +8,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 {
     public class MasterClassGenerator
     {
-        private SpecFlowDocument _document;
-        private CodeNamespace _codeNamespace;
+        private readonly SpecFlowDocument _document;
+        private readonly CodeNamespace _codeNamespace;
 
         public MasterClassGenerator(SpecFlowDocument document, CodeNamespace codeNamespace)
         {
@@ -28,14 +24,15 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
             foreach (var scenario in _document.SpecFlowFeature.Children.OfType<Scenario>())
             {
-                foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x => x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.Then))
+                foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
+                    x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.Then))
                 {
                     var testMethod = new CodeMemberMethod();
                     testClass.Members.Add(testMethod);
 
                     testMethod.Name = "TestLine" + step.Location.Line;
                     testMethod.Statements.Add(new CodeVariableDeclarationStatement(typeof(bool),
-                        "expectedExceptionOccured", new CodePrimitiveExpression(false)));
+                        "noExceptionOccured", new CodePrimitiveExpression(true)));
                     var tryCatchStatement = new CodeTryCatchFinallyStatement
                     {
                         TryStatements = { },
@@ -46,8 +43,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                                 Statements =
                                 {
                                     new CodeAssignStatement(
-                                        new CodeVariableReferenceExpression("expectedExceptionOccured"),
-                                        new CodePrimitiveExpression(true))
+                                        new CodeVariableReferenceExpression("noExceptionOccured"),
+                                        new CodePrimitiveExpression(false))
                                 }
                             }
                         }
@@ -55,11 +52,16 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     testMethod.Statements.Add(tryCatchStatement);
                     var exceptionValidationStatement = new CodeConditionStatement
                     {
-                        Condition = new UnaryExpression
+                        Condition = new CodeVariableReferenceExpression("noExceptionOccured"),
+                        TrueStatements =
                         {
-                            
+                            new CodeThrowExceptionStatement
+                            {
+                                ToThrow = new CodeObjectCreateExpression(typeof(Exception),
+                                    new CodePrimitiveExpression($"Line {step.Location.Line} is suspicious."))
+                            }
                         }
-                    }
+                    };
                     testMethod.Statements.Add(exceptionValidationStatement);
                 }
             }
