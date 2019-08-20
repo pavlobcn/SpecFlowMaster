@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Microsoft.CSharp;
 using NUnit.Framework;
 using PB.SpecFlowMaster.SpecFlowPlugin;
+using TechTalk.SpecFlow.Generator.CodeDom;
+using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Parser;
 
 namespace PB.SpecFlowMaster.Tests
@@ -31,7 +33,7 @@ namespace PB.SpecFlowMaster.Tests
             }
 
             var codeNamespace = new CodeNamespace();
-            var target = new MasterClassGenerator(document, codeNamespace);
+            var target = new MasterClassGenerator(document, codeNamespace, new NUnit3TestGeneratorProvider(new CodeDomHelper(new CSharpCodeProvider())));
             target.Generate();
 
             using (var outputWriter = new StringWriter())

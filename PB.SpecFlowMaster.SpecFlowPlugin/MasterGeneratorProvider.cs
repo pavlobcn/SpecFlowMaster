@@ -41,7 +41,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             BaseUnitTestGeneratorProvider.SetTestClass(generationContext, featureTitle, featureDescription);
 
-            new MasterClassGenerator(generationContext.Document, generationContext.Namespace).Generate();
+            new MasterClassGenerator(generationContext.Document, generationContext.Namespace, BaseUnitTestGeneratorProvider).Generate();
         }
 
         public void SetTestClassCategories(TestClassGenerationContext generationContext, IEnumerable<string> featureCategories)

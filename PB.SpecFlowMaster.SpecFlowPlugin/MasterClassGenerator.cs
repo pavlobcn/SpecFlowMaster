@@ -3,9 +3,12 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using BoDi;
 using Gherkin.Ast;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Generator;
+using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Parser;
 using ScenarioBlock = TechTalk.SpecFlow.Parser.ScenarioBlock;
 
@@ -16,11 +19,14 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private readonly SpecFlowDocument _document;
         private readonly CodeNamespace _codeNamespace;
+        private readonly IUnitTestGeneratorProvider _unitTestGeneratorProvider;
+        private int _tableCounter = 0;
 
-        public MasterClassGenerator(SpecFlowDocument document, CodeNamespace codeNamespace)
+        public MasterClassGenerator(SpecFlowDocument document, CodeNamespace codeNamespace, IUnitTestGeneratorProvider unitTestGeneratorProvider)
         {
             _document = document;
             _codeNamespace = codeNamespace;
+            _unitTestGeneratorProvider = unitTestGeneratorProvider;
         }
 
         public void Generate()
@@ -61,15 +67,15 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     }
                 }
             };
-            tryCatchStatement.TryStatements.AddRange(GetActionStatements(scenario, step));
+            AddActionStatements(tryCatchStatement.TryStatements, scenario, step);
             testMethod.Statements.Add(tryCatchStatement);
-            var exceptionValidationStatement = GetAssertStatement(step, NamingHelper.NoExceptionOccuredVariableName);
+            var exceptionValidationStatement = GetAssertStatement(step);
             testMethod.Statements.Add(exceptionValidationStatement);
 
             return testMethod;
         }
 
-        private CodeStatement GetAssertStatement(SpecFlowStep step, string noExceptionOccuredVariableName)
+        private CodeStatement GetAssertStatement(SpecFlowStep step)
         {
             var exceptionValidationStatement = new CodeConditionStatement
             {
@@ -87,16 +93,16 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return exceptionValidationStatement;
         }
 
-        private CodeStatement[] GetActionStatements(Scenario scenario, SpecFlowStep step)
+        private void AddActionStatements(CodeStatementCollection statements, Scenario scenario, SpecFlowStep step)
         {
-            var statements = new List<CodeStatement>
+            var statementsToAdd = new List<CodeStatement>
             {
                 // testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
                 new CodeVariableDeclarationStatement(typeof(ITestRunner),
                     NamingHelper.TestRunnerVariableName,
                     new CodeMethodInvokeExpression(
                         new CodeMethodReferenceExpression(new CodeTypeReferenceExpression(typeof(TestRunnerManager)),
-                            nameof(TestRunnerManager.CreateTestRunner)))),
+                            nameof(TestRunnerManager.GetTestRunner)))),
                 // TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
                 new CodeVariableDeclarationStatement(typeof(FeatureInfo),
                     NamingHelper.FeatureInfoVariableName,
@@ -129,6 +135,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                             nameof(ITestRunner.OnScenarioInitialize)),
                         new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName))),
                 //testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+                // TODO: fix this
+                /*
+                _unitTestGeneratorProvider.FinalizeTestClass(new TestClassGenerationContext())
                 new CodeMethodReturnStatement(
                     new CodeMethodInvokeExpression(
                         new CodeMethodReferenceExpression(
@@ -140,6 +149,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                             nameof(IObjectContainer.RegisterInstanceAs),
                             new CodeTypeReference(typeof(NUnit.Framework.TestContext))),
                         new CodeVariableReferenceExpression("NUnit.Framework.TestContext.CurrentContext"))),
+                        */
                 // testRunner.OnScenarioStart();
                 new CodeMethodReturnStatement(
                     new CodeMethodInvokeExpression(
@@ -148,18 +158,17 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                             nameof(ITestRunner.OnScenarioStart))))
             };
 
+            statements.AddRange(statementsToAdd.ToArray());
+
             foreach (var scenarioStep in scenario.Steps.Where(x => x != step))
             {
-                statements.Add(GenerateStep(scenarioStep));
+                statements.Add(GenerateStep(statements, scenarioStep, null));
             }
-
-            return statements.ToArray();
         }
 
-        private CodeStatement GenerateStep(Step scenarioStep, ParameterSubstitution paramToIdentifier)
+        private CodeStatement GenerateStep(CodeStatementCollection statements, Step scenarioStep, ParameterSubstitution paramToIdentifier)
         {
-            //var testRunnerField = GetTestRunnerExpression();
-            //var scenarioStep = AsSpecFlowStep(gherkinStep);
+            var specFlowStep = AsSpecFlowStep(scenarioStep);
 
             //testRunner.Given("something");
             var arguments = new List<CodeExpression>
@@ -170,17 +179,112 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodePrimitiveExpression(scenarioStep.Keyword)
             };
 
-
-            using (new SourceLineScope(_specFlowConfiguration, _codeDomHelper, statements, generationContext.Document.SourceFilePath, gherkinStep.Location))
-            {
-                return new CodeExpressionStatement(
-                    new CodeMethodInvokeExpression(
-                        testRunnerField,
-                        scenarioStep.StepKeyword.ToString(),
-                        arguments.ToArray()));
-            }
+            return new CodeExpressionStatement(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        specFlowStep.StepKeyword.ToString()),
+                    arguments.ToArray()));
         }
 
+        private SpecFlowStep AsSpecFlowStep(Step step)
+        {
+            var specFlowStep = step as SpecFlowStep;
+            if (specFlowStep == null)
+                throw new TestGeneratorException("The step must be a SpecFlowStep.");
+            return specFlowStep;
+        }
+
+        private CodeExpression GetTableArgExpression(DataTable tableArg, CodeStatementCollection statements, ParameterSubstitution paramToIdentifier)
+        {
+            if (tableArg == null)
+                return new CodeCastExpression(typeof(Table), new CodePrimitiveExpression(null));
+
+            _tableCounter++;
+
+            //TODO[Gherkin3]: remove dependency on having the first row as header
+            var header = tableArg.Rows.First();
+            var body = tableArg.Rows.Skip(1).ToArray();
+
+            //Table table0 = new Table(header...);
+            var tableVar = new CodeVariableReferenceExpression("table" + _tableCounter);
+            statements.Add(
+                new CodeVariableDeclarationStatement(typeof(Table), tableVar.VariableName,
+                    new CodeObjectCreateExpression(
+                        typeof(Table),
+                        GetStringArrayExpression(header.Cells.Select(c => c.Value), paramToIdentifier))));
+
+            foreach (var row in body)
+            {
+                //table0.AddRow(cells...);
+                statements.Add(
+                    new CodeMethodInvokeExpression(
+                        tableVar,
+                        "AddRow",
+                        GetStringArrayExpression(row.Cells.Select(c => c.Value), paramToIdentifier)));
+            }
+
+            return tableVar;
+        }
+
+        private CodeExpression GetStringArrayExpression(IEnumerable<Tag> tags)
+        {
+            if (!tags.Any())
+                return new CodeCastExpression(typeof(string[]), new CodePrimitiveExpression(null));
+
+            return new CodeArrayCreateExpression(typeof(string[]), tags.Select(tag => new CodePrimitiveExpression(tag.GetNameWithoutAt())).Cast<CodeExpression>().ToArray());
+        }
+
+        private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier)
+        {
+            return new CodeArrayCreateExpression(typeof(string[]), items.Select(item => GetSubstitutedString(item, paramToIdentifier)).ToArray());
+        }
+
+
+        private CodeExpression GetDocStringArgExpression(DocString docString, ParameterSubstitution paramToIdentifier)
+        {
+            return GetSubstitutedString(docString == null ? null : docString.Content, paramToIdentifier);
+        }
+
+        private CodeExpression GetSubstitutedString(string text, ParameterSubstitution paramToIdentifier)
+        {
+            if (text == null)
+                return new CodeCastExpression(typeof(string), new CodePrimitiveExpression(null));
+            if (paramToIdentifier == null)
+                return new CodePrimitiveExpression(text);
+
+            Regex paramRe = new Regex(@"\<(?<param>[^\>]+)\>");
+            string formatText = text.Replace("{", "{{").Replace("}", "}}");
+            List<string> arguments = new List<string>();
+
+            formatText = paramRe.Replace(formatText, match =>
+            {
+                string param = match.Groups["param"].Value;
+                string id;
+                if (!paramToIdentifier.TryGetIdentifier(param, out id))
+                    return match.Value;
+                int argIndex = arguments.IndexOf(id);
+                if (argIndex < 0)
+                {
+                    argIndex = arguments.Count;
+                    arguments.Add(id);
+                }
+
+                return "{" + argIndex + "}";
+            });
+
+            if (arguments.Count == 0)
+                return new CodePrimitiveExpression(text);
+
+            List<CodeExpression> formatArguments = new List<CodeExpression>();
+            formatArguments.Add(new CodePrimitiveExpression(formatText));
+            formatArguments.AddRange(arguments.Select(id => new CodeVariableReferenceExpression(id)).Cast<CodeExpression>());
+
+            return new CodeMethodInvokeExpression(
+                new CodeTypeReferenceExpression(typeof(string)),
+                "Format",
+                formatArguments.ToArray());
+        }
         private CodeTypeDeclaration GetTypeDeclaration()
         {
             var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
@@ -219,7 +323,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public const string TestsClassName = "MasterTests";
         public const string NoExceptionOccuredVariableName = "noExceptionOccured";
         public const string TestRunnerVariableName = "testRunner";
-        public const string FeatureInfoVariableName = "testRunner";
+        public const string FeatureInfoVariableName = "featureInfo";
         public const string ScenarioInfoVariableName = "scenarioInfo";
 
         public static string GetTestName(SpecFlowStep step)
@@ -228,4 +332,28 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         }
     }
 
+    // TODO: replace with existing class from TechTalk.SpecFlow.Generator
+    internal class ParameterSubstitution : List<KeyValuePair<string, string>>
+    {
+        public void Add(string parameter, string identifier)
+        {
+            Add(new KeyValuePair<string, string>(parameter.Trim(), identifier));
+        }
+
+        public bool TryGetIdentifier(string param, out string id)
+        {
+            param = param.Trim();
+            foreach (var pair in this)
+            {
+                if (pair.Key.Equals(param))
+                {
+                    id = pair.Value;
+                    return true;
+                }
+            }
+
+            id = null;
+            return false;
+        }
+    }
 }
