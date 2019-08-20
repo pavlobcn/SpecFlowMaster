@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using BoDi;
 using Gherkin.Ast;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Parser;
@@ -32,13 +33,13 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
                     x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.Then))
                 {
-                    CodeMemberMethod testMethod = GetLineTest(testClass, step);
+                    CodeMemberMethod testMethod = GetLineTest(testClass, scenario, step);
                     testClass.Members.Add(testMethod);
                 }
             }
         }
 
-        private CodeMemberMethod GetLineTest(CodeTypeDeclaration testClass, SpecFlowStep step)
+        private CodeMemberMethod GetLineTest(CodeTypeDeclaration testClass, Scenario scenario, SpecFlowStep step)
         {
             var testMethod = new CodeMemberMethod();
 
@@ -60,7 +61,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     }
                 }
             };
-            tryCatchStatement.TryStatements.AddRange(GetActionStatements());
+            tryCatchStatement.TryStatements.AddRange(GetActionStatements(scenario, step));
             testMethod.Statements.Add(tryCatchStatement);
             var exceptionValidationStatement = GetAssertStatement(step, NamingHelper.NoExceptionOccuredVariableName);
             testMethod.Statements.Add(exceptionValidationStatement);
@@ -86,24 +87,98 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return exceptionValidationStatement;
         }
 
-        private CodeStatement[] GetActionStatements()
+        private CodeStatement[] GetActionStatements(Scenario scenario, SpecFlowStep step)
         {
-            return new CodeStatement[]
+            var statements = new List<CodeStatement>
             {
+                // testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
                 new CodeVariableDeclarationStatement(typeof(ITestRunner),
                     NamingHelper.TestRunnerVariableName,
                     new CodeMethodInvokeExpression(
                         new CodeMethodReferenceExpression(new CodeTypeReferenceExpression(typeof(TestRunnerManager)),
                             nameof(TestRunnerManager.CreateTestRunner)))),
+                // TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
                 new CodeVariableDeclarationStatement(typeof(FeatureInfo),
                     NamingHelper.FeatureInfoVariableName,
                     new CodeObjectCreateExpression(typeof(FeatureInfo),
                         new CodeObjectCreateExpression(typeof(CultureInfo), new CodePrimitiveExpression("en-US")),
                         new CodePrimitiveExpression(_document.Feature.Name),
                         new CodePrimitiveExpression(_document.Feature.Description),
-                        new CodePrimitiveExpression(ProgrammingLanguage.CSharp),
-                        new CodePrimitiveExpression(null)))
+                        new CodeFieldReferenceExpression(
+                            new CodeTypeReferenceExpression(nameof(ProgrammingLanguage)),
+                            nameof(ProgrammingLanguage.CSharp)),
+                        new CodePrimitiveExpression(null))),
+                // testRunner.OnFeatureStart(featureInfo);
+                new CodeMethodReturnStatement(
+                    new CodeMethodInvokeExpression(
+                        new CodeMethodReferenceExpression(
+                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                            nameof(ITestRunner.OnFeatureStart)),
+                        new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName))),
+                // TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
+                new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
+                    NamingHelper.FeatureInfoVariableName,
+                    new CodeObjectCreateExpression(typeof(ScenarioInfo),
+                        new CodePrimitiveExpression(_document.Feature.Name),
+                        new CodePrimitiveExpression(null))),
+                //testRunner.OnScenarioInitialize(scenarioInfo);
+                new CodeMethodReturnStatement(
+                    new CodeMethodInvokeExpression(
+                        new CodeMethodReferenceExpression(
+                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                            nameof(ITestRunner.OnScenarioInitialize)),
+                        new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName))),
+                //testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+                new CodeMethodReturnStatement(
+                    new CodeMethodInvokeExpression(
+                        new CodeMethodReferenceExpression(
+                            new CodePropertyReferenceExpression(
+                                new CodePropertyReferenceExpression(
+                                    new CodeFieldReferenceExpression(null, NamingHelper.TestRunnerVariableName),
+                                    nameof(ScenarioContext)),
+                                nameof(ScenarioContext.ScenarioContainer)),
+                            nameof(IObjectContainer.RegisterInstanceAs),
+                            new CodeTypeReference(typeof(NUnit.Framework.TestContext))),
+                        new CodeVariableReferenceExpression("NUnit.Framework.TestContext.CurrentContext"))),
+                // testRunner.OnScenarioStart();
+                new CodeMethodReturnStatement(
+                    new CodeMethodInvokeExpression(
+                        new CodeMethodReferenceExpression(
+                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                            nameof(ITestRunner.OnScenarioStart))))
             };
+
+            foreach (var scenarioStep in scenario.Steps.Where(x => x != step))
+            {
+                statements.Add(GenerateStep(scenarioStep));
+            }
+
+            return statements.ToArray();
+        }
+
+        private CodeStatement GenerateStep(Step scenarioStep, ParameterSubstitution paramToIdentifier)
+        {
+            //var testRunnerField = GetTestRunnerExpression();
+            //var scenarioStep = AsSpecFlowStep(gherkinStep);
+
+            //testRunner.Given("something");
+            var arguments = new List<CodeExpression>
+            {
+                GetSubstitutedString(scenarioStep.Text, paramToIdentifier),
+                GetDocStringArgExpression(scenarioStep.Argument as DocString, paramToIdentifier),
+                GetTableArgExpression(scenarioStep.Argument as DataTable, statements, paramToIdentifier),
+                new CodePrimitiveExpression(scenarioStep.Keyword)
+            };
+
+
+            using (new SourceLineScope(_specFlowConfiguration, _codeDomHelper, statements, generationContext.Document.SourceFilePath, gherkinStep.Location))
+            {
+                return new CodeExpressionStatement(
+                    new CodeMethodInvokeExpression(
+                        testRunnerField,
+                        scenarioStep.StepKeyword.ToString(),
+                        arguments.ToArray()));
+            }
         }
 
         private CodeTypeDeclaration GetTypeDeclaration()
@@ -145,6 +220,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public const string NoExceptionOccuredVariableName = "noExceptionOccured";
         public const string TestRunnerVariableName = "testRunner";
         public const string FeatureInfoVariableName = "testRunner";
+        public const string ScenarioInfoVariableName = "scenarioInfo";
 
         public static string GetTestName(SpecFlowStep step)
         {
