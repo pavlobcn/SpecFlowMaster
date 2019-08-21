@@ -93,10 +93,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
     }
     
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("SpecFlowTarget")]
     public class MasterTests
     {
         
-        private void TestLine8()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TestLine8")]
+        public virtual void TestLine8()
         {
             bool noExceptionOccured = true;
             try
@@ -122,7 +126,9 @@ this.ScenarioInitialize(scenarioInfo);
             }
         }
         
-        private void TestLine9()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TestLine9")]
+        public virtual void TestLine9()
         {
             bool noExceptionOccured = true;
             try
@@ -148,7 +154,9 @@ this.ScenarioInitialize(scenarioInfo);
             }
         }
         
-        private void TestLine11()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TestLine11")]
+        public virtual void TestLine11()
         {
             bool noExceptionOccured = true;
             try

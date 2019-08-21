@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace PB.SpecFlowMaster.TargetTests
@@ -6,28 +8,25 @@ namespace PB.SpecFlowMaster.TargetTests
     [Binding]
     public class SpecFlowTargetSteps
     {
+        private List<int> numbers = new List<int>();
+        private int result;
+
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
-            Tmp();
-            //ScenarioContext.Current.Pending();
+            numbers.Add(p0);
         }
         
         [When(@"I press add")]
         public void WhenIPressAdd()
         {
-            //ScenarioContext.Current.Pending();
+            result = numbers[numbers.Count - 2] + numbers[numbers.Count - 1];
         }
         
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
-            //ScenarioContext.Current.Pending();
-        }
-
-        public static void Tmp()
-        {
-            //var a = new SampleGeneratorPlugin();
+            Assert.AreEqual(p0, result);
         }
     }
 }

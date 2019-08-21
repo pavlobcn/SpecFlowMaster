@@ -24,6 +24,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         public void Generate()
         {
+            _context.UnitTestGeneratorProvider.SetTestClass(_context, _context.Document.Feature.Name, _context.Document.Feature.Description);
+
             foreach (var scenario in _context.Document.SpecFlowFeature.Children.OfType<Scenario>())
             {
                 foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
@@ -36,9 +38,12 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void AddLineTest(Scenario scenario, SpecFlowStep step)
         {
-            var testMethod = new CodeMemberMethod();
+            var testMethod = new CodeMemberMethod
+            {
+                Attributes = MemberAttributes.Public,
+                Name = NamingHelper.GetTestName(step)
+            };
 
-            testMethod.Name = NamingHelper.GetTestName(step);
             testMethod.Statements.Add(new CodeVariableDeclarationStatement(typeof(bool),
                 NamingHelper.NoExceptionOccuredVariableName, new CodePrimitiveExpression(true)));
             var tryCatchStatement = new CodeTryCatchFinallyStatement
@@ -60,6 +65,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             testMethod.Statements.Add(tryCatchStatement);
             var exceptionValidationStatement = GetAssertStatement(step);
             testMethod.Statements.Add(exceptionValidationStatement);
+
+            _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(step));
 
             _context.TestClass.Members.Add(testMethod);
         }
@@ -258,7 +265,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
             List<CodeExpression> formatArguments = new List<CodeExpression>();
             formatArguments.Add(new CodePrimitiveExpression(formatText));
-            formatArguments.AddRange(arguments.Select(id => new CodeVariableReferenceExpression(id)).Cast<CodeExpression>());
+            formatArguments.AddRange(arguments.Select(id => new CodeVariableReferenceExpression(id)));
 
             return new CodeMethodInvokeExpression(
                 new CodeTypeReferenceExpression(typeof(string)),

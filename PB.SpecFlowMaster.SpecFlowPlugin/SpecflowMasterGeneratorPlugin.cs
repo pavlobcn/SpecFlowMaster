@@ -14,8 +14,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public void Initialize(GeneratorPluginEvents generatorPluginEvents, GeneratorPluginParameters generatorPluginParameters,
             UnitTestProviderConfiguration unitTestProviderConfiguration)
         {
-            System.Diagnostics.Debugger.Launch();
-
             unitTestProviderConfiguration.UseUnitTestProvider(MasterGeneratorProvider.Name);
 
             generatorPluginEvents.RegisterDependencies += CustomizeDependencies;
@@ -23,8 +21,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void CustomizeDependencies(object sender, RegisterDependenciesEventArgs e)
         {
-            System.Diagnostics.Debugger.Launch();
-
             e.ObjectContainer.RegisterTypeAs<MasterGeneratorProvider, IUnitTestGeneratorProvider>(MasterGeneratorProvider.Name);
 
             var config = ReadConfiguration();

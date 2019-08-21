@@ -16,10 +16,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public MasterGeneratorProvider(IObjectContainer container)
         {
             _container = container;
-            System.Diagnostics.Debugger.Launch();
         }
 
-        public IUnitTestGeneratorProvider BaseUnitTestGeneratorProvider
+        private IUnitTestGeneratorProvider BaseUnitTestGeneratorProvider
         {
             get
             {
