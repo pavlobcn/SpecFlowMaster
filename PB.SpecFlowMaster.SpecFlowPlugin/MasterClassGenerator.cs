@@ -95,15 +95,16 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void AddActionStatements(CodeStatementCollection statements, Scenario scenario, SpecFlowStep step)
         {
-            var statementsToAdd = new List<CodeStatement>
-            {
-                // testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
+            // testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
+            statements.Add(
                 new CodeVariableDeclarationStatement(typeof(ITestRunner),
                     NamingHelper.TestRunnerVariableName,
                     new CodeMethodInvokeExpression(
-                        new CodeMethodReferenceExpression(new CodeTypeReferenceExpression(typeof(TestRunnerManager)),
-                            nameof(TestRunnerManager.GetTestRunner)))),
-                // TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
+                        new CodeMethodReferenceExpression(
+                            new CodeTypeReferenceExpression(typeof(TestRunnerManager)),
+                            nameof(TestRunnerManager.GetTestRunner)))));
+            // TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
+            statements.Add(
                 new CodeVariableDeclarationStatement(typeof(FeatureInfo),
                     NamingHelper.FeatureInfoVariableName,
                     new CodeObjectCreateExpression(typeof(FeatureInfo),
@@ -113,52 +114,50 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                         new CodeFieldReferenceExpression(
                             new CodeTypeReferenceExpression(nameof(ProgrammingLanguage)),
                             nameof(ProgrammingLanguage.CSharp)),
-                        new CodePrimitiveExpression(null))),
-                // testRunner.OnFeatureStart(featureInfo);
-                new CodeMethodReturnStatement(
-                    new CodeMethodInvokeExpression(
-                        new CodeMethodReferenceExpression(
-                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
-                            nameof(ITestRunner.OnFeatureStart)),
-                        new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName))),
-                // TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
+                        new CodePrimitiveExpression(null))));
+            // testRunner.OnFeatureStart(featureInfo);
+            statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        nameof(ITestRunner.OnFeatureStart)),
+                    new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName)));
+            // TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
+            statements.Add(
                 new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
-                    NamingHelper.FeatureInfoVariableName,
+                    NamingHelper.ScenarioInfoVariableName,
                     new CodeObjectCreateExpression(typeof(ScenarioInfo),
                         new CodePrimitiveExpression(_document.Feature.Name),
-                        new CodePrimitiveExpression(null))),
-                //testRunner.OnScenarioInitialize(scenarioInfo);
-                new CodeMethodReturnStatement(
-                    new CodeMethodInvokeExpression(
-                        new CodeMethodReferenceExpression(
-                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
-                            nameof(ITestRunner.OnScenarioInitialize)),
-                        new CodeVariableReferenceExpression(NamingHelper.FeatureInfoVariableName))),
-                //testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
-                // TODO: fix this
-                /*
-                _unitTestGeneratorProvider.FinalizeTestClass(new TestClassGenerationContext())
-                new CodeMethodReturnStatement(
-                    new CodeMethodInvokeExpression(
-                        new CodeMethodReferenceExpression(
+                        new CodePrimitiveExpression(null))));
+            //testRunner.OnScenarioInitialize(scenarioInfo);
+            statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        nameof(ITestRunner.OnScenarioInitialize)),
+                    new CodeVariableReferenceExpression(NamingHelper.ScenarioInfoVariableName)));
+            //testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            // TODO: fix this
+            /*
+            _unitTestGeneratorProvider.FinalizeTestClass(new TestClassGenerationContext())
+            new CodeMethodReturnStatement(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodePropertyReferenceExpression(
                             new CodePropertyReferenceExpression(
-                                new CodePropertyReferenceExpression(
-                                    new CodeFieldReferenceExpression(null, NamingHelper.TestRunnerVariableName),
-                                    nameof(ScenarioContext)),
-                                nameof(ScenarioContext.ScenarioContainer)),
-                            nameof(IObjectContainer.RegisterInstanceAs),
-                            new CodeTypeReference(typeof(NUnit.Framework.TestContext))),
-                        new CodeVariableReferenceExpression("NUnit.Framework.TestContext.CurrentContext"))),
-                        */
-                // testRunner.OnScenarioStart();
-                new CodeMethodReturnStatement(
-                    new CodeMethodInvokeExpression(
-                        new CodeMethodReferenceExpression(
-                            new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
-                            nameof(ITestRunner.OnScenarioStart))))
-            };
-
-            statements.AddRange(statementsToAdd.ToArray());
+                                new CodeFieldReferenceExpression(null, NamingHelper.TestRunnerVariableName),
+                                nameof(ScenarioContext)),
+                            nameof(ScenarioContext.ScenarioContainer)),
+                        nameof(IObjectContainer.RegisterInstanceAs),
+                        new CodeTypeReference(typeof(NUnit.Framework.TestContext))),
+                    new CodeVariableReferenceExpression("NUnit.Framework.TestContext.CurrentContext"))),
+                    */
+            // testRunner.OnScenarioStart();
+            statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        nameof(ITestRunner.OnScenarioStart))));
 
             foreach (var scenarioStep in scenario.Steps.Where(x => x != step))
             {
