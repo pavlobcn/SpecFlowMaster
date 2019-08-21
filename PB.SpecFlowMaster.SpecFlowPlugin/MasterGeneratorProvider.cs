@@ -41,7 +41,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             BaseUnitTestGeneratorProvider.SetTestClass(generationContext, featureTitle, featureDescription);
 
-            new MasterClassGenerator(generationContext.Document, generationContext.Namespace, BaseUnitTestGeneratorProvider).Generate();
+            GenerateMaster(generationContext);
         }
 
         public void SetTestClassCategories(TestClassGenerationContext generationContext, IEnumerable<string> featureCategories)
@@ -115,6 +115,30 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             string exampleSetName, string variantName, IEnumerable<KeyValuePair<string, string>> arguments)
         {
             BaseUnitTestGeneratorProvider.SetTestMethodAsRow(generationContext, testMethod, scenarioTitle, exampleSetName, variantName, arguments);
+        }
+
+        private void GenerateMaster(TestClassGenerationContext generationContext)
+        {
+            var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
+            generationContext.Namespace.Types.Add(testClass);
+
+            var masterContext = new TestClassGenerationContext(
+                unitTestGeneratorProvider: BaseUnitTestGeneratorProvider,
+                document: generationContext.Document,
+                ns: generationContext.Namespace,
+                testClass: testClass,
+                testRunnerField: null,
+                testClassInitializeMethod: null,
+                testClassCleanupMethod: null,
+                testInitializeMethod: null,
+                testCleanupMethod: null,
+                scenarioInitializeMethod: null,
+                scenarioStartMethod: null,
+                scenarioCleanupMethod: null,
+                featureBackgroundMethod: null,
+                generateRowTests: false
+                );
+            new MasterClassGenerator(context: masterContext).Generate();
         }
     }
 }

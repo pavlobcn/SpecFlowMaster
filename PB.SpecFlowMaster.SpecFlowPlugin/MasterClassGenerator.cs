@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BoDi;
 using Gherkin.Ast;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Parser;
 using ScenarioBlock = TechTalk.SpecFlow.Parser.ScenarioBlock;
 
@@ -16,36 +14,27 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 {
     public class MasterClassGenerator
     {
+        private readonly TestClassGenerationContext _context;
+        private int _tableCounter;
 
-        private readonly SpecFlowDocument _document;
-        private readonly CodeNamespace _codeNamespace;
-        private readonly IUnitTestGeneratorProvider _unitTestGeneratorProvider;
-        private int _tableCounter = 0;
-
-        public MasterClassGenerator(SpecFlowDocument document, CodeNamespace codeNamespace, IUnitTestGeneratorProvider unitTestGeneratorProvider)
+        public MasterClassGenerator(TestClassGenerationContext context)
         {
-            _document = document;
-            _codeNamespace = codeNamespace;
-            _unitTestGeneratorProvider = unitTestGeneratorProvider;
+            _context = context;
         }
 
         public void Generate()
         {
-            var testClass = GetTypeDeclaration();
-            _codeNamespace.Types.Add(testClass);
-
-            foreach (var scenario in _document.SpecFlowFeature.Children.OfType<Scenario>())
+            foreach (var scenario in _context.Document.SpecFlowFeature.Children.OfType<Scenario>())
             {
                 foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
                     x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.Then))
                 {
-                    CodeMemberMethod testMethod = GetLineTest(testClass, scenario, step);
-                    testClass.Members.Add(testMethod);
+                    AddLineTest(scenario, step);
                 }
             }
         }
 
-        private CodeMemberMethod GetLineTest(CodeTypeDeclaration testClass, Scenario scenario, SpecFlowStep step)
+        private void AddLineTest(Scenario scenario, SpecFlowStep step)
         {
             var testMethod = new CodeMemberMethod();
 
@@ -72,7 +61,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             var exceptionValidationStatement = GetAssertStatement(step);
             testMethod.Statements.Add(exceptionValidationStatement);
 
-            return testMethod;
+            _context.TestClass.Members.Add(testMethod);
         }
 
         private CodeStatement GetAssertStatement(SpecFlowStep step)
@@ -109,8 +98,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     NamingHelper.FeatureInfoVariableName,
                     new CodeObjectCreateExpression(typeof(FeatureInfo),
                         new CodeObjectCreateExpression(typeof(CultureInfo), new CodePrimitiveExpression("en-US")),
-                        new CodePrimitiveExpression(_document.Feature.Name),
-                        new CodePrimitiveExpression(_document.Feature.Description),
+                        new CodePrimitiveExpression(_context.Document.Feature.Name),
+                        new CodePrimitiveExpression(_context.Document.Feature.Description),
                         new CodeFieldReferenceExpression(
                             new CodeTypeReferenceExpression(nameof(ProgrammingLanguage)),
                             nameof(ProgrammingLanguage.CSharp)),
@@ -127,7 +116,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
                     NamingHelper.ScenarioInfoVariableName,
                     new CodeObjectCreateExpression(typeof(ScenarioInfo),
-                        new CodePrimitiveExpression(_document.Feature.Name),
+                        new CodePrimitiveExpression(_context.Document.Feature.Name),
                         new CodePrimitiveExpression(null))));
             //testRunner.OnScenarioInitialize(scenarioInfo);
             statements.Add(
@@ -226,14 +215,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return tableVar;
         }
 
-        private CodeExpression GetStringArrayExpression(IEnumerable<Tag> tags)
-        {
-            if (!tags.Any())
-                return new CodeCastExpression(typeof(string[]), new CodePrimitiveExpression(null));
-
-            return new CodeArrayCreateExpression(typeof(string[]), tags.Select(tag => new CodePrimitiveExpression(tag.GetNameWithoutAt())).Cast<CodeExpression>().ToArray());
-        }
-
         private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier)
         {
             return new CodeArrayCreateExpression(typeof(string[]), items.Select(item => GetSubstitutedString(item, paramToIdentifier)).ToArray());
@@ -284,40 +265,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 "Format",
                 formatArguments.ToArray());
         }
-        private CodeTypeDeclaration GetTypeDeclaration()
-        {
-            var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
-            return testClass;
-        }
-
-        private void TestTemplate()
-        {
-            /*
-            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                                                                                                                                                           "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
-            testRunner.OnFeatureStart(featureInfo);
-
-
-            bool expectedExceptionOccured = false;
-            try
-            {
-
-            }
-            catch
-            {
-                expectedExceptionOccured = true;
-            }
-
-            if (!expectedExceptionOccured)
-            {
-                throw new Exception("Suspicious statement at line #");
-            }
-            */
-        }
     }
 
-    internal static class NamingHelper
+    public static class NamingHelper
     {
         public const string TestsClassName = "MasterTests";
         public const string NoExceptionOccuredVariableName = "noExceptionOccured";

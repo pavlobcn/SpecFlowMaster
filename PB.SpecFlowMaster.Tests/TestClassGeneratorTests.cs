@@ -1,15 +1,11 @@
-﻿using System;
-using System.CodeDom;
+﻿using System.CodeDom;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.CSharp;
 using NUnit.Framework;
 using PB.SpecFlowMaster.SpecFlowPlugin;
+using TechTalk.SpecFlow.Generator;
 using TechTalk.SpecFlow.Generator.CodeDom;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Parser;
@@ -33,7 +29,26 @@ namespace PB.SpecFlowMaster.Tests
             }
 
             var codeNamespace = new CodeNamespace();
-            var target = new MasterClassGenerator(document, codeNamespace, new NUnit3TestGeneratorProvider(new CodeDomHelper(new CSharpCodeProvider())));
+            var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
+            codeNamespace.Types.Add(testClass);
+            var context = new TestClassGenerationContext(
+                unitTestGeneratorProvider: new NUnit3TestGeneratorProvider(new CodeDomHelper(new CSharpCodeProvider())),
+                document: document,
+                ns: codeNamespace,
+                testClass: testClass,
+                testRunnerField: null,
+                testClassInitializeMethod: null,
+                testClassCleanupMethod: null,
+                testInitializeMethod: null,
+                testCleanupMethod: null,
+                scenarioInitializeMethod: null,
+                scenarioStartMethod: null,
+                scenarioCleanupMethod: null,
+                featureBackgroundMethod: null,
+                generateRowTests: false
+            );
+
+            var target = new MasterClassGenerator(context);
             target.Generate();
 
             using (var outputWriter = new StringWriter())
