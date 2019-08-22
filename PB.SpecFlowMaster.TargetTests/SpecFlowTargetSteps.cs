@@ -27,6 +27,11 @@ namespace PB.SpecFlowMaster.TargetTests
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
             Assert.AreEqual(p0, result);
+
+            if (p0 != result)
+            {
+                //throw new Exception("Failed!");
+            }
         }
     }
 }

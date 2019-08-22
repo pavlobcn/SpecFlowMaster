@@ -157,12 +157,16 @@ this.ScenarioInitialize(scenarioInfo);
             bool noExceptionOccured = true;
             try
             {
+                TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowTarget", null);
+                testRunner.OnScenarioInitialize(scenarioInfo);
+                this.ScenarioStart();
 #line 9
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                this.ScenarioCleanup();
             }
             catch (System.Exception )
             {
@@ -181,12 +185,16 @@ this.ScenarioInitialize(scenarioInfo);
             bool noExceptionOccured = true;
             try
             {
+                TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowTarget", null);
+                testRunner.OnScenarioInitialize(scenarioInfo);
+                this.ScenarioStart();
 #line 8
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                this.ScenarioCleanup();
             }
             catch (System.Exception )
             {
@@ -199,18 +207,22 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine11")]
-        public virtual void TestLine11()
+        [NUnit.Framework.DescriptionAttribute("TestLine10")]
+        public virtual void TestLine10()
         {
             bool noExceptionOccured = true;
             try
             {
+                TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowTarget", null);
+                testRunner.OnScenarioInitialize(scenarioInfo);
+                this.ScenarioStart();
 #line 8
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                this.ScenarioCleanup();
             }
             catch (System.Exception )
             {
@@ -218,7 +230,7 @@ this.ScenarioInitialize(scenarioInfo);
             }
             if (noExceptionOccured)
             {
-                throw new System.Exception("Line 11 is suspicious.");
+                throw new System.Exception("Line 10 is suspicious.");
             }
         }
     }

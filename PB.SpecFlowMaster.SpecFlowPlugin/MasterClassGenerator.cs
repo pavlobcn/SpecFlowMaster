@@ -112,8 +112,10 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             foreach (var scenario in _context.Document.SpecFlowFeature.Children.OfType<Scenario>())
             {
+                // Generate tests only for GIVEN and WHEN statements
+                // because THEN statements are not actions and usually can be safely removed
                 foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
-                    x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.Then))
+                    x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When))
                 {
                     AddLineTest(scenario, step);
                 }
@@ -354,7 +356,36 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     }
                 }
             };
+
+            //TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
+            tryCatchStatement.TryStatements.Add(
+                new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
+                    NamingHelper.ScenarioInfoVariableName,
+                    new CodeObjectCreateExpression(typeof(ScenarioInfo),
+                        new CodePrimitiveExpression(_context.Document.Feature.Name),
+                        new CodePrimitiveExpression(null))));
+            //testRunner.OnScenarioInitialize(scenarioInfo);
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        nameof(ITestRunner.OnScenarioInitialize)),
+                    new CodeVariableReferenceExpression(NamingHelper.ScenarioInfoVariableName)));
+
+            //this.ScenarioStart();
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeThisReferenceExpression(),
+                    _context.ScenarioStartMethod.Name));
+
             AddActionStatements(tryCatchStatement.TryStatements, scenario, step);
+
+            //this.ScenarioCleanup();
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeThisReferenceExpression(),
+                    _context.ScenarioCleanupMethod.Name));
+
             testMethod.Statements.Add(tryCatchStatement);
             var exceptionValidationStatement = GetAssertStatement(step);
             testMethod.Statements.Add(exceptionValidationStatement);
