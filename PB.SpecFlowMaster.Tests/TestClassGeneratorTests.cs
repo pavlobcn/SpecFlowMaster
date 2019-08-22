@@ -29,7 +29,7 @@ namespace PB.SpecFlowMaster.Tests
             }
 
             var codeNamespace = new CodeNamespace();
-            var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
+            var testClass = new CodeTypeDeclaration("FeatureTest");
             codeNamespace.Types.Add(testClass);
             var context = new TestClassGenerationContext(
                 unitTestGeneratorProvider: new NUnit3TestGeneratorProvider(new CodeDomHelper(new CSharpCodeProvider())),
@@ -48,7 +48,9 @@ namespace PB.SpecFlowMaster.Tests
                 generateRowTests: false
             );
 
-            var target = new MasterClassGenerator(context);
+            var target = new MasterClassGenerator(
+                MasterClassGenerator.CreateContextFromOriginContext(context, context.UnitTestGeneratorProvider),
+                new CodeDomHelper(new CSharpCodeProvider()));
             target.Generate();
 
             using (var outputWriter = new StringWriter())

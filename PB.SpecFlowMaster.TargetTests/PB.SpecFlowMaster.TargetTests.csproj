@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.14" />
+    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.16" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 

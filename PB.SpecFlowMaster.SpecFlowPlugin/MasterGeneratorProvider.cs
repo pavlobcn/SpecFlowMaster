@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BoDi;
 using TechTalk.SpecFlow.Generator;
+using TechTalk.SpecFlow.Generator.CodeDom;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
 
 namespace PB.SpecFlowMaster.SpecFlowPlugin
@@ -118,26 +119,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void GenerateMaster(TestClassGenerationContext generationContext)
         {
-            var testClass = new CodeTypeDeclaration(NamingHelper.TestsClassName);
-            generationContext.Namespace.Types.Add(testClass);
-
-            var masterContext = new TestClassGenerationContext(
-                unitTestGeneratorProvider: BaseUnitTestGeneratorProvider,
-                document: generationContext.Document,
-                ns: generationContext.Namespace,
-                testClass: testClass,
-                testRunnerField: null,
-                testClassInitializeMethod: null,
-                testClassCleanupMethod: null,
-                testInitializeMethod: null,
-                testCleanupMethod: null,
-                scenarioInitializeMethod: null,
-                scenarioStartMethod: null,
-                scenarioCleanupMethod: null,
-                featureBackgroundMethod: null,
-                generateRowTests: false
-                );
-            new MasterClassGenerator(context: masterContext).Generate();
+            new MasterClassGenerator(
+                context: MasterClassGenerator.CreateContextFromOriginContext(generationContext,
+                    BaseUnitTestGeneratorProvider), _container.Resolve<CodeDomHelper>()).Generate();
         }
     }
 }
