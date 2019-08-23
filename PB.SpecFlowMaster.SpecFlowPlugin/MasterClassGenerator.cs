@@ -73,12 +73,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return testRunnerField;
         }
 
-        private static int _methodIndex;
         private static CodeMemberMethod CreateMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.Name = "A" + _methodIndex;
-            _methodIndex++;
             type.Members.Add(method);
             return method;
         }
@@ -406,18 +403,35 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void AddLineTest(Scenario scenario, SpecFlowStep step)
         {
-            // TODO: Add wrapper and wrapped methods
+            // Test method
             var testMethod = new CodeMemberMethod
             {
                 Attributes = MemberAttributes.Public,
                 Name = NamingHelper.GetTestName(step)
             };
 
-            AddActionStatements(testMethod.Statements, scenario, step);
+            testMethod.Statements.Add(new CodeMethodInvokeExpression(
+                new CodeMethodReferenceExpression(
+                    new CodeThisReferenceExpression(),
+                    NamingHelper.TestWrapperMethodName),
+                new CodeMethodReferenceExpression(new CodeThisReferenceExpression(),
+                    NamingHelper.GetTestStepsName(step)), new CodePrimitiveExpression(step.Location.Line)));
 
             _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(step));
 
             _context.TestClass.Members.Add(testMethod);
+
+            // Test steps
+            var stepsMethod = new CodeMemberMethod
+            {
+                Attributes = MemberAttributes.Private,
+                Name = NamingHelper.GetTestStepsName(step)
+            };
+
+            AddActionStatements(stepsMethod.Statements, scenario, step);
+
+            _context.TestClass.Members.Add(stepsMethod);
+
         }
 
         private CodeStatement GetAssertStatement()
@@ -572,7 +586,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public const string FeatureInfoVariableName = "featureInfo";
         public const string ScenarioInfoVariableName = "scenarioInfo";
         public const string TestWrapperMethodName = "Test";
-        public const string TestActionParameterName = "action";
+        public const string TestActionParameterName = "steps";
         public const string LineNumberParameterName = "lineNumber";
 
         public static string GetTestClassName(SpecFlowFeature feature)
@@ -583,6 +597,11 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public static string GetTestName(SpecFlowStep step)
         {
             return "TestLine" + step.Location.Line;
+        }
+
+        public static string GetTestStepsName(SpecFlowStep step)
+        {
+            return GetTestName(step) + "Steps";
         }
     }
 
