@@ -143,6 +143,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     new CodeObjectCreateExpression(typeof(ScenarioInfo),
                         new CodePrimitiveExpression(_context.Document.Feature.Name),
                         new CodePrimitiveExpression(null))));
+
             //testRunner.OnScenarioInitialize(scenarioInfo);
             tryCatchStatement.TryStatements.Add(
                 new CodeMethodInvokeExpression(
@@ -157,7 +158,10 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     new CodeThisReferenceExpression(),
                     _context.ScenarioStartMethod.Name));
 
-            AddActionStatements(tryCatchStatement.TryStatements, scenario, step);
+            //action();
+            tryCatchStatement.TryStatements.Add(
+                new CodeDelegateInvokeExpression(
+                    new CodeVariableReferenceExpression(NamingHelper.TestActionParameterName)));
 
             //this.ScenarioCleanup();
             tryCatchStatement.TryStatements.Add(
@@ -402,62 +406,14 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void AddLineTest(Scenario scenario, SpecFlowStep step)
         {
+            // TODO: Add wrapper and wrapped methods
             var testMethod = new CodeMemberMethod
             {
                 Attributes = MemberAttributes.Public,
                 Name = NamingHelper.GetTestName(step)
             };
 
-            testMethod.Statements.Add(new CodeVariableDeclarationStatement(typeof(bool),
-                NamingHelper.NoExceptionOccuredVariableName, new CodePrimitiveExpression(true)));
-            var tryCatchStatement = new CodeTryCatchFinallyStatement
-            {
-                CatchClauses =
-                {
-                    new CodeCatchClause()
-                    {
-                        Statements =
-                        {
-                            new CodeAssignStatement(
-                                new CodeVariableReferenceExpression(NamingHelper.NoExceptionOccuredVariableName),
-                                new CodePrimitiveExpression(false))
-                        }
-                    }
-                }
-            };
-
-            //TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
-            tryCatchStatement.TryStatements.Add(
-                new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
-                    NamingHelper.ScenarioInfoVariableName,
-                    new CodeObjectCreateExpression(typeof(ScenarioInfo),
-                        new CodePrimitiveExpression(_context.Document.Feature.Name),
-                        new CodePrimitiveExpression(null))));
-            //testRunner.OnScenarioInitialize(scenarioInfo);
-            tryCatchStatement.TryStatements.Add(
-                new CodeMethodInvokeExpression(
-                    new CodeMethodReferenceExpression(
-                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
-                        nameof(ITestRunner.OnScenarioInitialize)),
-                    new CodeVariableReferenceExpression(NamingHelper.ScenarioInfoVariableName)));
-
-            //this.ScenarioStart();
-            tryCatchStatement.TryStatements.Add(
-                new CodeMethodInvokeExpression(
-                    new CodeThisReferenceExpression(),
-                    _context.ScenarioStartMethod.Name));
-
-            AddActionStatements(tryCatchStatement.TryStatements, scenario, step);
-
-            //this.ScenarioCleanup();
-            tryCatchStatement.TryStatements.Add(
-                new CodeMethodInvokeExpression(
-                    new CodeThisReferenceExpression(),
-                    _context.ScenarioCleanupMethod.Name));
-
-            testMethod.Statements.Add(tryCatchStatement);
-            var exceptionValidationStatement = GetAssertStatement(step);
-            testMethod.Statements.Add(exceptionValidationStatement);
+            AddActionStatements(testMethod.Statements, scenario, step);
 
             _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(step));
 
