@@ -97,10 +97,79 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             SetupTestInitializeMethod();
             SetupTestCleanupMethod();
 
+            SetupTestWrapper();
+
             SetupTests();
 
             SetupFinalizeTest();
 
+        }
+
+        private void SetupTestWrapper()
+        {
+            var testWrapperMethod = new CodeMemberMethod
+            {
+                Attributes = MemberAttributes.Public,
+                Name = NamingHelper.TestWrapperMethodName,
+                Parameters =
+                {
+                    new CodeParameterDeclarationExpression(typeof(Action), NamingHelper.TestActionParameterName),
+                    new CodeParameterDeclarationExpression(typeof(int), NamingHelper.LineNumberParameterName)
+                }
+            };
+
+            testWrapperMethod.Statements.Add(new CodeVariableDeclarationStatement(typeof(bool),
+                NamingHelper.NoExceptionOccuredVariableName, new CodePrimitiveExpression(true)));
+            var tryCatchStatement = new CodeTryCatchFinallyStatement
+            {
+                CatchClauses =
+                {
+                    new CodeCatchClause
+                    {
+                        Statements =
+                        {
+                            new CodeAssignStatement(
+                                new CodeVariableReferenceExpression(NamingHelper.NoExceptionOccuredVariableName),
+                                new CodePrimitiveExpression(false))
+                        }
+                    }
+                }
+            };
+
+            //TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers new12345", null, new string[] { "mytag"});
+            tryCatchStatement.TryStatements.Add(
+                new CodeVariableDeclarationStatement(typeof(ScenarioInfo),
+                    NamingHelper.ScenarioInfoVariableName,
+                    new CodeObjectCreateExpression(typeof(ScenarioInfo),
+                        new CodePrimitiveExpression(_context.Document.Feature.Name),
+                        new CodePrimitiveExpression(null))));
+            //testRunner.OnScenarioInitialize(scenarioInfo);
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(
+                        new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
+                        nameof(ITestRunner.OnScenarioInitialize)),
+                    new CodeVariableReferenceExpression(NamingHelper.ScenarioInfoVariableName)));
+
+            //this.ScenarioStart();
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeThisReferenceExpression(),
+                    _context.ScenarioStartMethod.Name));
+
+            AddActionStatements(tryCatchStatement.TryStatements, scenario, step);
+
+            //this.ScenarioCleanup();
+            tryCatchStatement.TryStatements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeThisReferenceExpression(),
+                    _context.ScenarioCleanupMethod.Name));
+
+            testWrapperMethod.Statements.Add(tryCatchStatement);
+            var exceptionValidationStatement = GetAssertStatement();
+            testWrapperMethod.Statements.Add(exceptionValidationStatement);
+
+            _context.TestClass.Members.Add(testWrapperMethod);
         }
 
         private void SetupFinalizeTest()
@@ -395,17 +464,22 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             _context.TestClass.Members.Add(testMethod);
         }
 
-        private CodeStatement GetAssertStatement(SpecFlowStep step)
+        private CodeStatement GetAssertStatement()
         {
             var exceptionValidationStatement = new CodeConditionStatement
             {
+                //if (noExceptionOccured)
                 Condition = new CodeVariableReferenceExpression(NamingHelper.NoExceptionOccuredVariableName),
                 TrueStatements =
                 {
                     new CodeThrowExceptionStatement
                     {
+                        //throw new Exception(string.Format("Line {0} is suspicious.", lineNumber));
                         ToThrow = new CodeObjectCreateExpression(typeof(Exception),
-                            new CodePrimitiveExpression($"Line {step.Location.Line} is suspicious."))
+                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(string)),
+                                nameof(string.Format),
+                                new CodePrimitiveExpression("Line {0} is suspicious."),
+                                new CodeVariableReferenceExpression(NamingHelper.LineNumberParameterName)))
                     }
                 }
             };
@@ -541,6 +615,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public const string TestRunnerVariableName = "testRunner";
         public const string FeatureInfoVariableName = "featureInfo";
         public const string ScenarioInfoVariableName = "scenarioInfo";
+        public const string TestWrapperMethodName = "Test";
+        public const string TestActionParameterName = "action";
+        public const string LineNumberParameterName = "lineNumber";
 
         public static string GetTestClassName(SpecFlowFeature feature)
         {

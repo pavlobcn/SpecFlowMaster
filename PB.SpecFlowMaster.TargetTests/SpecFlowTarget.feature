@@ -5,6 +5,7 @@
 
 @mytag
 Scenario: Add two numbers new12345
+	Given I have entered 10 into the calculator
 	Given I have entered 50 into the calculator
 	And I have entered 70 into the calculator
 	When I press add
