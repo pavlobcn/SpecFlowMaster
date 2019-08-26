@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PB.SpecFlowMaster.Examples.Nunit
+namespace PB.SpecFlowMaster.Examples.Mstest
 {
     using TechTalk.SpecFlow;
     
@@ -62,7 +62,7 @@ namespace PB.SpecFlowMaster.Examples.Nunit
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "SpecFlowTarget")))
             {
-                global::PB.SpecFlowMaster.Examples.Nunit.SpecFlowTargetFeature.FeatureSetup(null);
+                global::PB.SpecFlowMaster.Examples.Mstest.SpecFlowTargetFeature.FeatureSetup(null);
             }
         }
         
@@ -89,12 +89,12 @@ namespace PB.SpecFlowMaster.Examples.Nunit
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers123456789QW1abcd")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void AddTwoNumbers()
+        public virtual void AddTwoNumbers123456789QW1Abcd()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers123456789QW1abcd", null, new string[] {
                         "mytag"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -159,7 +159,7 @@ this.ScenarioInitialize(scenarioInfo);
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "SpecFlowTarget")))
             {
-                global::PB.SpecFlowMaster.Examples.Nunit.SpecFlowTargetFeatureMaster.FeatureSetup(null);
+                global::PB.SpecFlowMaster.Examples.Mstest.SpecFlowTargetFeatureMaster.FeatureSetup(null);
             }
         }
         

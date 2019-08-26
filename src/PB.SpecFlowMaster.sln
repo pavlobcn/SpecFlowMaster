@@ -22,7 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BCCE30
 	ProjectSection(SolutionItems) = preProject
 		Examples\Directory.Build.props = Examples\Directory.Build.props
 		Examples\SpecFlowTarget.feature = Examples\SpecFlowTarget.feature
-		Examples\SpecFlowTargetSteps.cs = Examples\SpecFlowTargetSteps.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PB.SpecFlowMaster.Examples.Mstest", "Examples\PB.SpecFlowMaster.Examples.Mstest\PB.SpecFlowMaster.Examples.Mstest.csproj", "{7709B961-35BB-45E0-8923-C77E48BB1638}"
