@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace PB.SpecFlowMaster.TargetTests
+namespace PB.SpecFlowMaster.Examples
 {
     [Binding]
-    public class SpecFlowTargetSteps
+    public class SpecFlowTargetSteps2
     {
         private List<int> numbers = new List<int>();
         private int result;

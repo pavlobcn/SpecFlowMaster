@@ -4,7 +4,13 @@
     <TargetFramework>net471</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>PB.SpecFlowMaster.Examples.Nunit</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SpecFlowTargetSteps.cs" Link="SpecFlowTargetSteps.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -36,5 +42,9 @@
       <Generator Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></Generator>
     </SpecFlowFeatureFiles>
   </ItemGroup>
+
+  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+    <Exec Command="copy &quot;$(ProjectDir)\..\SpecFlowTarget.feature&quot; &quot;$(ProjectDir)&quot;" />
+  </Target>
 
 </Project>
