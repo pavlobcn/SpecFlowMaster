@@ -11,9 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\SpecFlowTargetSteps.cs" Link="SpecFlowTargetSteps.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.23" />
+    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.25" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 

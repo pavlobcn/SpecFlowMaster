@@ -120,8 +120,10 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         private void GenerateMaster(TestClassGenerationContext generationContext)
         {
             new MasterClassGenerator(
-                context: MasterClassGenerator.CreateContextFromOriginContext(generationContext,
-                    BaseUnitTestGeneratorProvider), _container.Resolve<CodeDomHelper>()).Generate();
+                _container,
+                MasterClassGenerator.CreateContextFromOriginContext(generationContext,
+                    BaseUnitTestGeneratorProvider),
+                _container.Resolve<CodeDomHelper>()).Generate();
         }
     }
 }

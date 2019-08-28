@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Globalization;
 using System.IO;
+using BoDi;
 using Microsoft.CSharp;
 using NUnit.Framework;
 using PB.SpecFlowMaster.SpecFlowPlugin;
@@ -49,6 +50,7 @@ namespace PB.SpecFlowMaster.Tests
             );
 
             var target = new MasterClassGenerator(
+                new ObjectContainer(), 
                 MasterClassGenerator.CreateContextFromOriginContext(context, context.UnitTestGeneratorProvider),
                 new CodeDomHelper(new CSharpCodeProvider()));
             target.Generate();

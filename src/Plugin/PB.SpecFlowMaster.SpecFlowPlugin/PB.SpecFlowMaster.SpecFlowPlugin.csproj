@@ -15,11 +15,5 @@
     <PackageReference Include="Utf8Json" Version="1.3.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Configuration.ConfigurationManager">
-      <HintPath>C:\Users\Arsenal\.nuget\packages\system.configuration.configurationmanager\4.5.0\ref\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 
 </Project>

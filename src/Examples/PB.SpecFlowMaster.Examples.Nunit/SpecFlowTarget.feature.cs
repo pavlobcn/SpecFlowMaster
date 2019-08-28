@@ -160,7 +160,15 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowTarget", null);
                 testRunner.OnScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
-                steps();
+                NUnit.Framework.Internal.TestExecutionContext.IsolatedContext testExecutionContext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                try
+                {
+                    steps();
+                }
+                finally
+                {
+                    testExecutionContext.Dispose();
+                }
                 this.ScenarioCleanup();
             }
             catch (System.Exception )
