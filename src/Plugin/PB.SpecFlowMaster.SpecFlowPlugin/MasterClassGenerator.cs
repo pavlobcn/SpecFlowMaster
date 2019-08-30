@@ -634,7 +634,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         public static string GetTestName(SpecFlowStep step)
         {
-            return "TestLine" + step.Location.Line;
+            return $"TestLine{step.Location.Line}{step.Text.ToIdentifier()}";
         }
 
         public static string GetTestStepsName(SpecFlowStep step)
