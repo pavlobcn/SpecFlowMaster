@@ -70,6 +70,18 @@ namespace PB.SpecFlowMaster.Examples.Mbunit3
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line 7
+ testRunner.Given("I have entered 15 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.And("I have entered 25 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+        }
+        
         [MbUnit.Framework.TestAttribute()]
         [MbUnit.Framework.DescriptionAttribute("Add two numbers123456789QW1abcd")]
         [MbUnit.Framework.CategoryAttribute("mytag")]
@@ -77,18 +89,20 @@ namespace PB.SpecFlowMaster.Examples.Mbunit3
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers123456789QW1abcd", null, new string[] {
                         "mytag"});
-#line 7
+#line 12
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 6
+this.FeatureBackground();
+#line 13
  testRunner.Given("I have entered 10 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 14
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 15
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 16
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 17
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -148,8 +162,10 @@ this.ScenarioInitialize(scenarioInfo);
             testRunner.CollectScenarioErrors();
         }
         
-        private void FeatureBackground()
+        public virtual void FeatureBackground()
         {
+#line 6
+#line hidden
         }
         
         public virtual void Test(System.Action steps, int lineNumber)
@@ -174,78 +190,78 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [MbUnit.Framework.TestAttribute()]
-        [MbUnit.Framework.DescriptionAttribute("TestLine8")]
-        public virtual void TestLine8()
+        [MbUnit.Framework.DescriptionAttribute("TestLine13")]
+        public virtual void TestLine13()
         {
-            this.Test(this.TestLine8Steps, 8);
+            this.Test(this.TestLine13Steps, 13);
         }
         
-        private void TestLine8Steps()
+        private void TestLine13Steps()
         {
-#line 9
+#line 14
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 15
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 16
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 17
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [MbUnit.Framework.TestAttribute()]
-        [MbUnit.Framework.DescriptionAttribute("TestLine9")]
-        public virtual void TestLine9()
+        [MbUnit.Framework.DescriptionAttribute("TestLine14")]
+        public virtual void TestLine14()
         {
-            this.Test(this.TestLine9Steps, 9);
+            this.Test(this.TestLine14Steps, 14);
         }
         
-        private void TestLine9Steps()
+        private void TestLine14Steps()
         {
-#line 8
+#line 13
  testRunner.Given("I have entered 10 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 15
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 16
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 17
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [MbUnit.Framework.TestAttribute()]
-        [MbUnit.Framework.DescriptionAttribute("TestLine10")]
-        public virtual void TestLine10()
+        [MbUnit.Framework.DescriptionAttribute("TestLine15")]
+        public virtual void TestLine15()
         {
-            this.Test(this.TestLine10Steps, 10);
+            this.Test(this.TestLine15Steps, 15);
         }
         
-        private void TestLine10Steps()
+        private void TestLine15Steps()
         {
-#line 8
+#line 13
  testRunner.Given("I have entered 10 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 14
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 16
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 17
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [MbUnit.Framework.TestAttribute()]
-        [MbUnit.Framework.DescriptionAttribute("TestLine11")]
-        public virtual void TestLine11()
+        [MbUnit.Framework.DescriptionAttribute("TestLine16")]
+        public virtual void TestLine16()
         {
-            this.Test(this.TestLine11Steps, 11);
+            this.Test(this.TestLine16Steps, 16);
         }
         
-        private void TestLine11Steps()
+        private void TestLine16Steps()
         {
-#line 8
+#line 13
  testRunner.Given("I have entered 10 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 14
  testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 15
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 17
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
     }

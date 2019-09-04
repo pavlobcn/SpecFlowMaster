@@ -181,7 +181,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeVariableReferenceExpression(NamingHelper.TestActionParameterName));
 
             JsonConfig config = _container.Resolve<JsonConfig>();
-            if (config.UnitTestProvider.Equals("nunit", StringComparison.InvariantCultureIgnoreCase))
+            if (string.Equals(config.UnitTestProvider, "nunit", StringComparison.InvariantCultureIgnoreCase))
             {
                 /*
                 var testExecutionContext = new TestExecutionContext.IsolatedContext();
@@ -217,6 +217,12 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void SetupTests()
         {
+            foreach (SpecFlowStep step in _context.Document.SpecFlowFeature.Children.OfType<Background>().First().Steps.OfType<SpecFlowStep>().Where(x =>
+                x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When))
+            {
+                AddBackgroundLineTest(_context.Document.SpecFlowFeature, step);
+            }
+
             foreach (var scenario in _context.Document.SpecFlowFeature.Children.OfType<Scenario>())
             {
                 // Generate tests only for GIVEN and WHEN statements
@@ -224,7 +230,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
                     x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When))
                 {
-                    AddLineTest(scenario, step);
+                    AddScenarioLineTest(_context.Document.SpecFlowFeature, scenario, step);
                 }
             }
         }
@@ -438,13 +444,13 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             _codeDomHelper.BindTypeToSourceFile(testType, Path.GetFileName(sourceFile));
         }
 
-        private void AddLineTest(Scenario scenario, SpecFlowStep step)
+        private void AddScenarioLineTest(SpecFlowFeature feature, Scenario scenario, SpecFlowStep step)
         {
             // Test method
             var testMethod = new CodeMemberMethod
             {
                 Attributes = MemberAttributes.Public,
-                Name = NamingHelper.GetTestName(step)
+                Name = NamingHelper.GetTestName(feature, step)
             };
 
             testMethod.Statements.Add(new CodeMethodInvokeExpression(
@@ -452,9 +458,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     new CodeThisReferenceExpression(),
                     NamingHelper.TestWrapperMethodName),
                 new CodeMethodReferenceExpression(new CodeThisReferenceExpression(),
-                    NamingHelper.GetTestStepsName(step)), new CodePrimitiveExpression(step.Location.Line)));
+                    NamingHelper.GetTestStepsName(feature, step)), new CodePrimitiveExpression(step.Location.Line)));
 
-            _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(step));
+            _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(feature, step));
 
             _context.TestClass.Members.Add(testMethod);
 
@@ -462,10 +468,43 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             var stepsMethod = new CodeMemberMethod
             {
                 Attributes = MemberAttributes.Private,
-                Name = NamingHelper.GetTestStepsName(step)
+                Name = NamingHelper.GetTestStepsName(feature, step)
             };
 
-            AddActionStatements(stepsMethod.Statements, scenario, step);
+            AddActionStatementsForScenarioStep(feature, stepsMethod.Statements, scenario, step);
+
+            _context.TestClass.Members.Add(stepsMethod);
+
+        }
+
+        private void AddBackgroundLineTest(SpecFlowFeature feature, SpecFlowStep step)
+        {
+            // Test method
+            var testMethod = new CodeMemberMethod
+            {
+                Attributes = MemberAttributes.Public,
+                Name = NamingHelper.GetTestName(feature, step)
+            };
+
+            testMethod.Statements.Add(new CodeMethodInvokeExpression(
+                new CodeMethodReferenceExpression(
+                    new CodeThisReferenceExpression(),
+                    NamingHelper.TestWrapperMethodName),
+                new CodeMethodReferenceExpression(new CodeThisReferenceExpression(),
+                    NamingHelper.GetTestStepsName(feature, step)), new CodePrimitiveExpression(step.Location.Line)));
+
+            _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(feature, step));
+
+            _context.TestClass.Members.Add(testMethod);
+
+            // Test steps
+            var stepsMethod = new CodeMemberMethod
+            {
+                Attributes = MemberAttributes.Private,
+                Name = NamingHelper.GetTestStepsName(feature, step)
+            };
+
+            AddActionStatementsForBackgroundStep(feature, stepsMethod.Statements, step);
 
             _context.TestClass.Members.Add(stepsMethod);
 
@@ -494,15 +533,44 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return exceptionValidationStatement;
         }
 
-        private void AddActionStatements(CodeStatementCollection statements, Scenario scenario, SpecFlowStep step)
+        private void AddActionStatementsForScenarioStep(
+            SpecFlowFeature feature,
+            CodeStatementCollection statements,
+            Scenario scenario,
+            SpecFlowStep step)
         {
-            foreach (var scenarioStep in scenario.Steps.Where(x => x != step))
+            foreach (Step backgroundStep in feature.Background.Steps)
+            {
+                GenerateStep(statements, backgroundStep, null);
+            }
+
+            foreach (Step scenarioStep in scenario.Steps.Where(x => x != step))
             {
                 GenerateStep(statements, scenarioStep, null);
             }
         }
 
-        private void GenerateStep(CodeStatementCollection statements, Step scenarioStep, ParameterSubstitution paramToIdentifier)
+        private void AddActionStatementsForBackgroundStep(
+            SpecFlowFeature feature,
+            CodeStatementCollection statements,
+            SpecFlowStep step)
+        {
+            foreach (Scenario scenario in feature.Children.OfType<Scenario>())
+            {
+                foreach (Step backgroundStep in feature.Background.Steps.Where(x => x != step))
+                {
+                    GenerateStep(statements, backgroundStep, null);
+                }
+
+                foreach (Step scenarioStep in scenario.Steps)
+                {
+                    GenerateStep(statements, scenarioStep, null);
+                }
+            }
+        }
+
+        private void GenerateStep(CodeStatementCollection statements, Step scenarioStep,
+            ParameterSubstitution paramToIdentifier)
         {
             var specFlowStep = AsSpecFlowStep(scenarioStep);
 
@@ -632,14 +700,19 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return $"{feature.Name.ToIdentifier()}FeatureMaster";
         }
 
-        public static string GetTestName(SpecFlowStep step)
+        public static string GetTestName(SpecFlowFeature feature, SpecFlowStep step)
         {
-            return $"TestLine{step.Location.Line}{step.Text.ToIdentifier()}";
+            int digitCountInTotalLines =
+                feature.ScenarioDefinitions.Last().Steps.Last().Location.Line.ToString().Length;
+
+            string lineNumberLeadingZeros =
+                new string('0', digitCountInTotalLines - step.Location.Line.ToString().Length);
+            return $"TestLine{lineNumberLeadingZeros}{step.Location.Line}{step.Text.ToIdentifier()}";
         }
 
-        public static string GetTestStepsName(SpecFlowStep step)
+        public static string GetTestStepsName(SpecFlowFeature feature, SpecFlowStep step)
         {
-            return GetTestName(step) + "Steps";
+            return GetTestName(feature, step) + "Steps";
         }
     }
 
