@@ -18,7 +18,7 @@ namespace PB.SpecFlowMaster.Examples.Mbunit3
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [MbUnit.Framework.TestFixtureAttribute()]
-    [MbUnit.Framework.DescriptionAttribute("\tTest to check what steps execution are really needed for good tests")]
+    [MbUnit.Framework.DescriptionAttribute("\tTest to check which steps execution are really needed for good tests")]
     public partial class SpecFlowTargetFeature
     {
         
@@ -31,7 +31,7 @@ namespace PB.SpecFlowMaster.Examples.Mbunit3
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tTest to check what steps execution are really needed for good tests", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tTest to check which steps execution are really needed for good tests", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -274,7 +274,7 @@ this.FeatureBackground();
     }
     
     [MbUnit.Framework.TestFixtureAttribute()]
-    [MbUnit.Framework.DescriptionAttribute("\tTest to check what steps execution are really needed for good tests")]
+    [MbUnit.Framework.DescriptionAttribute("\tTest to check which steps execution are really needed for good tests")]
     public partial class SpecFlowTargetFeatureMaster
     {
         
@@ -287,7 +287,7 @@ this.FeatureBackground();
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tTest to check what steps execution are really needed for good tests", ProgrammingLanguage.CSharp, null);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowTarget", "\tTest to check which steps execution are really needed for good tests", ProgrammingLanguage.CSharp, null);
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,5 +1,5 @@
 ﻿Feature: SpecFlowTarget
-	Test to check what steps execution are really needed for good tests
+	Test to check which steps execution are really needed for good tests
 
 Background:
 # This background step is unnecessary
