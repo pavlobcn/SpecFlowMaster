@@ -1,17 +1,126 @@
 ﻿Feature: SpecFlowTarget
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	Test to check what steps execution are really needed for good tests
 
 Background:
-	Given I have entered 15 into the calculator
-	And I have entered 25 into the calculator
-	When I press add
+	Given step with parameter 10
+	And step with parameter 20
+	When execute with parameter 30
+	And execute with parameter 40
 
-@mytag
-Scenario: Add two numbers123456789QW1abcd
-	Given I have entered 10 into the calculator
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Scenario: Test without unnecessary steps
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary background Given step with parameter 10
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary background Given step with parameter 20
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary background When step with parameter 30
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary background When step with parameter 40
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary scenario Given step with parameter 110
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 120
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary scenario Given step with parameter 120
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed When step with parameter 130
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary scenario When step with parameter 130
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 140
+
+Scenario: Test with unnecessary scenario When step with parameter 140
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 130

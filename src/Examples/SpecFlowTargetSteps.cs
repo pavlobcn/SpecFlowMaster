@@ -6,25 +6,31 @@ namespace PB.SpecFlowMaster.Examples
     [Binding]
     public class SpecFlowTargetSteps : Steps
     {
-        private readonly List<int> _numbers = new List<int>();
-        private int _result;
+        private readonly HashSet<int> _givenExecutionParameters = new HashSet<int>();
+        private readonly HashSet<int> _whenExecutionParameters = new HashSet<int>();
 
-        [Given(@"I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredIntoTheCalculator(int p0)
+        [Given(@"step with parameter (.*)")]
+        public void GivenStepWithParameter(int parameter)
         {
-            _numbers.Add(p0);
+            _givenExecutionParameters.Add(parameter);
         }
-        
-        [When(@"I press add")]
-        public void WhenIPressAdd()
+
+        [When(@"execute with parameter (.*)")]
+        public void WhenExecuteWithParameter(int parameter)
         {
-            _result = _numbers[_numbers.Count - 2] + _numbers[_numbers.Count - 1];
+            _whenExecutionParameters.Add(parameter);
         }
-        
-        [Then(@"the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBeOnTheScreen(int p0)
+
+        [Then(@"executed Given step with parameter (.*)")]
+        public void ThenExecutedGivenStepWithParameter(int parameter)
         {
-            AreEqual(p0, _result);
+            AreEqual(true, _givenExecutionParameters.Contains(parameter));
+        }
+
+        [Then(@"executed When step with parameter (.*)")]
+        public void ThenExecutedWhenStepWithParameter(int parameter)
+        {
+            AreEqual(true, _whenExecutionParameters.Contains(parameter));
         }
     }
 }
