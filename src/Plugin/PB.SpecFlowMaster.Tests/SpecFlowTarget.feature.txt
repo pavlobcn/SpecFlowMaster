@@ -1,11 +1,21 @@
 ﻿Feature: SpecFlowTarget
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	Test to check what steps execution are really needed for good tests
 
-@mytag
-Scenario: Add two numbers new12345
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Background:
+	Given step with parameter 10
+	And step with parameter 20
+	When execute with parameter 30
+	And execute with parameter 40
+
+Scenario: Test with unnecessary scenario When step with parameter 130
+	Given step with parameter 110
+	And step with parameter 120
+	When execute with parameter 130
+	And execute with parameter 140
+	Then executed Given step with parameter 10
+	And executed Given step with parameter 20
+	And executed When step with parameter 30
+	And executed When step with parameter 40
+	And executed Given step with parameter 110
+	And executed Given step with parameter 120
+	And executed When step with parameter 140

@@ -194,7 +194,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     testExecutionContext.Dispose();
                 }
                 */
-                statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(NunitTestExecutionContextClassName), 
+                statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(NunitTestExecutionContextClassName),
                     NamingHelper.TestExecutionContextVariableName,
                     new CodeObjectCreateExpression(new CodeTypeReference(NunitTestExecutionContextClassName))));
                 var tryFinallyStatement = new CodeTryCatchFinallyStatement();
@@ -539,14 +539,50 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             Scenario scenario,
             SpecFlowStep step)
         {
-            foreach (Step backgroundStep in feature.Background.Steps)
+            foreach (SpecFlowStep backgroundStep in feature.Background.Steps)
             {
-                GenerateStep(statements, backgroundStep, null);
+                GenerateStep(statements, backgroundStep, null, backgroundStep.StepKeyword, backgroundStep.Keyword);
             }
 
-            foreach (Step scenarioStep in scenario.Steps.Where(x => x != step))
+            // TODO: fix 'And' for skipped step
+            foreach (SpecFlowStep scenarioStep in scenario.Steps.Where(x => x != step))
             {
-                GenerateStep(statements, scenarioStep, null);
+                FixStepKeyWordForScenarioStep(scenario, scenarioStep, step, out StepKeyword stepKeyWord,
+                    out string keyWord);
+
+                GenerateStep(statements, scenarioStep, null, stepKeyWord, keyWord);
+            }
+        }
+
+        private void FixStepKeyWordForScenarioStep(Scenario scenario, SpecFlowStep executionStep, SpecFlowStep testingStep, out StepKeyword stepKeyWord, out string keyWord)
+        {
+            stepKeyWord = executionStep.StepKeyword;
+            keyWord = executionStep.Keyword;
+            if (executionStep.StepKeyword == StepKeyword.And)
+            {
+                int scenarioStepIndex = scenario.Steps.ToList().IndexOf(executionStep);
+                int stepIndex = scenario.Steps.ToList().IndexOf(testingStep);
+                if (scenarioStepIndex == stepIndex + 1)
+                {
+                    stepKeyWord = testingStep.StepKeyword;
+                    keyWord = testingStep.Keyword;
+                }
+            }
+        }
+
+        private void FixStepKeyWordForScenarioStep(SpecFlowFeature feature, SpecFlowStep executionStep, SpecFlowStep testingStep, out StepKeyword stepKeyWord, out string keyWord)
+        {
+            stepKeyWord = executionStep.StepKeyword;
+            keyWord = executionStep.Keyword;
+            if (executionStep.StepKeyword == StepKeyword.And)
+            {
+                int scenarioStepIndex = feature.Background.Steps.ToList().IndexOf(executionStep);
+                int stepIndex = feature.Background.Steps.ToList().IndexOf(testingStep);
+                if (scenarioStepIndex == stepIndex + 1)
+                {
+                    stepKeyWord = testingStep.StepKeyword;
+                    keyWord = testingStep.Keyword;
+                }
             }
         }
 
@@ -557,20 +593,28 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             foreach (Scenario scenario in feature.Children.OfType<Scenario>())
             {
-                foreach (Step backgroundStep in feature.Background.Steps.Where(x => x != step))
+                // TODO: fix 'And' for skipped step
+                foreach (SpecFlowStep backgroundStep in feature.Background.Steps.Where(x => x != step))
                 {
-                    GenerateStep(statements, backgroundStep, null);
+                    FixStepKeyWordForScenarioStep(feature, backgroundStep, step, out StepKeyword stepKeyWord,
+                        out string keyWord);
+
+                    GenerateStep(statements, backgroundStep, null, stepKeyWord, keyWord);
                 }
 
-                foreach (Step scenarioStep in scenario.Steps)
+                foreach (SpecFlowStep scenarioStep in scenario.Steps)
                 {
-                    GenerateStep(statements, scenarioStep, null);
+                    GenerateStep(statements, scenarioStep, null, scenarioStep.StepKeyword, scenarioStep.Keyword);
                 }
             }
         }
 
-        private void GenerateStep(CodeStatementCollection statements, Step scenarioStep,
-            ParameterSubstitution paramToIdentifier)
+        private void GenerateStep(
+            CodeStatementCollection statements,
+            Step scenarioStep,
+            ParameterSubstitution paramToIdentifier,
+            StepKeyword stepKeyWord,
+            string keyWord)
         {
             var specFlowStep = AsSpecFlowStep(scenarioStep);
 
@@ -580,7 +624,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 GetSubstitutedString(scenarioStep.Text, paramToIdentifier),
                 GetDocStringArgExpression(scenarioStep.Argument as DocString, paramToIdentifier),
                 GetTableArgExpression(scenarioStep.Argument as DataTable, statements, paramToIdentifier),
-                new CodePrimitiveExpression(scenarioStep.Keyword)
+                new CodePrimitiveExpression(keyWord)
             };
 
             AddLineDirective(statements, scenarioStep);
@@ -588,7 +632,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeMethodInvokeExpression(
                     new CodeMethodReferenceExpression(
                         new CodeVariableReferenceExpression(NamingHelper.TestRunnerVariableName),
-                        specFlowStep.StepKeyword.ToString()),
+                        stepKeyWord.ToString()),
                     arguments.ToArray())));
         }
 
