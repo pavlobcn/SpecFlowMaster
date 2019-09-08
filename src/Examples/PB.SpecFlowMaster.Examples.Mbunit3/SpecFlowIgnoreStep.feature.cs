@@ -10,15 +10,15 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PB.SpecFlowMaster.Examples.Ignore
+namespace PB.SpecFlowMaster.Examples.Mbunit3
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreStep")]
+    [MbUnit.Framework.TestFixtureAttribute()]
+    [MbUnit.Framework.DescriptionAttribute("\tTest how step can be ignored")]
     public partial class SpecFlowIgnoreStepFeature
     {
         
@@ -27,7 +27,7 @@ namespace PB.SpecFlowMaster.Examples.Ignore
 #line 1 "SpecFlowIgnoreStep.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
+        [MbUnit.Framework.FixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -35,19 +35,19 @@ namespace PB.SpecFlowMaster.Examples.Ignore
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
+        [MbUnit.Framework.FixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
+        [MbUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [MbUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -56,7 +56,6 @@ namespace PB.SpecFlowMaster.Examples.Ignore
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -81,8 +80,8 @@ namespace PB.SpecFlowMaster.Examples.Ignore
 #line hidden
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test with unnecessary steps. Will fails if steps are not ignored")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("Test with unnecessary steps. Will fails if steps are not ignored")]
         public virtual void TestWithUnnecessarySteps_WillFailsIfStepsAreNotIgnored()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps. Will fails if steps are not ignored", null, ((string[])(null)));
@@ -112,8 +111,8 @@ this.FeatureBackground();
         }
     }
     
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreStep")]
+    [MbUnit.Framework.TestFixtureAttribute()]
+    [MbUnit.Framework.DescriptionAttribute("\tTest how step can be ignored")]
     public partial class SpecFlowIgnoreStepFeatureMaster
     {
         
@@ -122,7 +121,7 @@ this.FeatureBackground();
 #line 1 "SpecFlowIgnoreStep.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
+        [MbUnit.Framework.FixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
@@ -130,19 +129,19 @@ this.FeatureBackground();
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
+        [MbUnit.Framework.FixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
+        [MbUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [MbUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -151,7 +150,6 @@ this.FeatureBackground();
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -178,15 +176,7 @@ this.FeatureBackground();
                 TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowIgnoreStep", null);
                 testRunner.OnScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
-                NUnit.Framework.Internal.TestExecutionContext.IsolatedContext testExecutionContext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
-                try
-                {
-                    steps();
-                }
-                finally
-                {
-                    testExecutionContext.Dispose();
-                }
+                steps();
                 this.ScenarioCleanup();
             }
             catch (System.Exception )
@@ -199,8 +189,8 @@ this.FeatureBackground();
             }
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine05StepWithParameter10")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine05StepWithParameter10")]
         public virtual void TestLine05StepWithParameter10()
         {
             this.Test(this.TestLine05StepWithParameter10Steps, 5);
@@ -230,8 +220,8 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine08ExecuteWithParameter20")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine08ExecuteWithParameter20")]
         public virtual void TestLine08ExecuteWithParameter20()
         {
             this.Test(this.TestLine08ExecuteWithParameter20Steps, 8);
@@ -261,8 +251,8 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine11StepWithParameter110")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine11StepWithParameter110")]
         public virtual void TestLine11StepWithParameter110()
         {
             this.Test(this.TestLine11StepWithParameter110Steps, 11);
@@ -292,8 +282,8 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine12ExecuteWithParameter130")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine12ExecuteWithParameter130")]
         public virtual void TestLine12ExecuteWithParameter130()
         {
             this.Test(this.TestLine12ExecuteWithParameter130Steps, 12);

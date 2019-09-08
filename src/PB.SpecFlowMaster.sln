@@ -21,6 +21,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BCCE3003-4D14-4867-8B2C-43922AE063E0}"
 	ProjectSection(SolutionItems) = preProject
 		Examples\Directory.Build.props = Examples\Directory.Build.props
+		Examples\SpecFlowIgnoreFeature.feature = Examples\SpecFlowIgnoreFeature.feature
+		Examples\SpecFlowIgnoreScenario.feature = Examples\SpecFlowIgnoreScenario.feature
+		Examples\SpecFlowIgnoreStep.feature = Examples\SpecFlowIgnoreStep.feature
 		Examples\SpecFlowTarget.feature = Examples\SpecFlowTarget.feature
 		Examples\SpecFlowTargetSteps.cs = Examples\SpecFlowTargetSteps.cs
 	EndProjectSection
@@ -38,8 +41,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.Mbunit", "Examples\PB.SpecFlowMaster.Examples.Mbunit\PB.SpecFlowMaster.Examples.Mbunit.csproj", "{6C47D64E-D440-4091-907F-EA07D07F499C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.Mbunit3", "Examples\PB.SpecFlowMaster.Examples.Mbunit3\PB.SpecFlowMaster.Examples.Mbunit3.csproj", "{D5FF82CB-D262-46AE-9B79-FC22CCDD7DE9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.Ignore", "Examples\PB.SpecFlowMaster.Examples.Ignore\PB.SpecFlowMaster.Examples.Ignore.csproj", "{4F167B80-7526-4C7E-A873-412AB8DD3B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,10 +88,6 @@ Global
 		{D5FF82CB-D262-46AE-9B79-FC22CCDD7DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5FF82CB-D262-46AE-9B79-FC22CCDD7DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5FF82CB-D262-46AE-9B79-FC22CCDD7DE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F167B80-7526-4C7E-A873-412AB8DD3B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F167B80-7526-4C7E-A873-412AB8DD3B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F167B80-7526-4C7E-A873-412AB8DD3B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F167B80-7526-4C7E-A873-412AB8DD3B93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,7 +104,6 @@ Global
 		{92302C5D-E04F-4462-8E18-C0C6AF5D2888} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 		{6C47D64E-D440-4091-907F-EA07D07F499C} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 		{D5FF82CB-D262-46AE-9B79-FC22CCDD7DE9} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
-		{4F167B80-7526-4C7E-A873-412AB8DD3B93} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E928DCB-D0AE-4721-A9B1-CFADFD70BDAD}

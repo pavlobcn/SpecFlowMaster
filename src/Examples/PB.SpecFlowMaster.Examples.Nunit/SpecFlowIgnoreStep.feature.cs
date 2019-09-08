@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PB.SpecFlowMaster.Examples.Ignore
+namespace PB.SpecFlowMaster.Examples.Nunit
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace PB.SpecFlowMaster.Examples.Ignore
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreScenario")]
-    public partial class SpecFlowIgnoreScenarioFeature
+    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreStep")]
+    public partial class SpecFlowIgnoreStepFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SpecFlowIgnoreScenario.feature"
+#line 1 "SpecFlowIgnoreStep.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowIgnoreScenario", "\tTest how scenario can be ignored", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowIgnoreStep", "\tTest how step can be ignored", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,45 +74,33 @@ namespace PB.SpecFlowMaster.Examples.Ignore
 #line 4
 #line 5
  testRunner.Given("step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
+#line 7
+ testRunner.And("step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
  testRunner.When("execute with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test with unnecessary steps. Will fail if not ignored")]
-        public virtual void TestWithUnnecessarySteps_WillFailIfNotIgnored()
+        [NUnit.Framework.DescriptionAttribute("Test with unnecessary steps. Will fails if steps are not ignored")]
+        public virtual void TestWithUnnecessarySteps_WillFailsIfStepsAreNotIgnored()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps. Will fail if not ignored", null, ((string[])(null)));
-#line 9
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 4
-this.FeatureBackground();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps. Will fails if steps are not ignored", null, ((string[])(null)));
 #line 10
- testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
- testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test without unnecessary steps")]
-        public virtual void TestWithoutUnnecessarySteps()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test without unnecessary steps", null, ((string[])(null)));
-#line 13
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 4
 this.FeatureBackground();
-#line 14
+#line 11
  testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 12
  testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 14
+ testRunner.And("execute with parameter 131", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.Then("executed Given step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("executed Given step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("executed When step with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
@@ -125,20 +113,20 @@ this.FeatureBackground();
     }
     
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreScenario")]
-    public partial class SpecFlowIgnoreScenarioFeatureMaster
+    [NUnit.Framework.DescriptionAttribute("SpecFlowIgnoreStep")]
+    public partial class SpecFlowIgnoreStepFeatureMaster
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SpecFlowIgnoreScenario.feature"
+#line 1 "SpecFlowIgnoreStep.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowIgnoreScenario", "\tTest how scenario can be ignored", ProgrammingLanguage.CSharp, null);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowIgnoreStep", "\tTest how step can be ignored", ProgrammingLanguage.CSharp, null);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -187,7 +175,7 @@ this.FeatureBackground();
             bool noExceptionOccured = true;
             try
             {
-                TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowIgnoreScenario", null);
+                TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SpecFlowIgnoreStep", null);
                 testRunner.OnScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
                 NUnit.Framework.Internal.TestExecutionContext.IsolatedContext testExecutionContext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
@@ -220,20 +208,20 @@ this.FeatureBackground();
         
         private void TestLine05StepWithParameter10Steps()
         {
-#line 6
+#line 7
+ testRunner.Given("step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.When("execute with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 6
- testRunner.When("execute with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
  testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 12
  testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 14
+ testRunner.And("execute with parameter 131", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.Then("executed Given step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("executed Given step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("executed When step with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
@@ -243,28 +231,28 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine06ExecuteWithParameter20")]
-        public virtual void TestLine06ExecuteWithParameter20()
+        [NUnit.Framework.DescriptionAttribute("TestLine08ExecuteWithParameter20")]
+        public virtual void TestLine08ExecuteWithParameter20()
         {
-            this.Test(this.TestLine06ExecuteWithParameter20Steps, 6);
+            this.Test(this.TestLine08ExecuteWithParameter20Steps, 8);
         }
         
-        private void TestLine06ExecuteWithParameter20Steps()
+        private void TestLine08ExecuteWithParameter20Steps()
         {
 #line 5
  testRunner.Given("step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
- testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.And("step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 5
- testRunner.Given("step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
  testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 12
  testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 14
+ testRunner.And("execute with parameter 131", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.Then("executed Given step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("executed Given step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("executed When step with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
@@ -274,22 +262,28 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine14StepWithParameter110")]
-        public virtual void TestLine14StepWithParameter110()
+        [NUnit.Framework.DescriptionAttribute("TestLine11StepWithParameter110")]
+        public virtual void TestLine11StepWithParameter110()
         {
-            this.Test(this.TestLine14StepWithParameter110Steps, 14);
+            this.Test(this.TestLine11StepWithParameter110Steps, 11);
         }
         
-        private void TestLine14StepWithParameter110Steps()
+        private void TestLine11StepWithParameter110Steps()
         {
 #line 5
  testRunner.Given("step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
+#line 7
+ testRunner.And("step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
  testRunner.When("execute with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 12
  testRunner.When("execute with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 14
+ testRunner.And("execute with parameter 131", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.Then("executed Given step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("executed Given step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("executed When step with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
@@ -299,22 +293,28 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine15ExecuteWithParameter130")]
-        public virtual void TestLine15ExecuteWithParameter130()
+        [NUnit.Framework.DescriptionAttribute("TestLine12ExecuteWithParameter130")]
+        public virtual void TestLine12ExecuteWithParameter130()
         {
-            this.Test(this.TestLine15ExecuteWithParameter130Steps, 15);
+            this.Test(this.TestLine12ExecuteWithParameter130Steps, 12);
         }
         
-        private void TestLine15ExecuteWithParameter130Steps()
+        private void TestLine12ExecuteWithParameter130Steps()
         {
 #line 5
  testRunner.Given("step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
+#line 7
+ testRunner.And("step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
  testRunner.When("execute with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 11
  testRunner.Given("step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 16
+#line 14
+ testRunner.When("execute with parameter 131", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
  testRunner.Then("executed Given step with parameter 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("executed Given step with parameter 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("executed When step with parameter 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
