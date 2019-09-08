@@ -103,7 +103,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             SetupTests();
 
             SetupFinalizeTest();
-
         }
 
         private void SetupTestWrapper()
@@ -217,18 +216,31 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
         private void SetupTests()
         {
-            foreach (SpecFlowStep step in _context.Document.SpecFlowFeature.Children.OfType<Background>().First().Steps.OfType<SpecFlowStep>().Where(x =>
-                x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When))
+            var metadata = _container.Resolve<FeatureMetadataProvider>()[_context.Document];
+
+            // Generate tests only for GIVEN and WHEN statements
+            // because THEN statements are not actions and usually can be safely removed
+            foreach (SpecFlowStep step in _context.Document.SpecFlowFeature.Children
+                .OfType<Background>()
+                .First()
+                .Steps
+                .OfType<SpecFlowStep>()
+                .Where(x => x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When)
+                .Where(x => !metadata.IsIgnored(x)))
             {
                 AddBackgroundLineTest(_context.Document.SpecFlowFeature, step);
             }
 
-            foreach (var scenario in _context.Document.SpecFlowFeature.Children.OfType<Scenario>())
+            foreach (Scenario scenario in _context.Document.SpecFlowFeature.Children
+                .OfType<Scenario>()
+                .Where(x => !metadata.IsIgnored(x)))
             {
                 // Generate tests only for GIVEN and WHEN statements
                 // because THEN statements are not actions and usually can be safely removed
-                foreach (SpecFlowStep step in scenario.Steps.OfType<SpecFlowStep>().Where(x =>
-                    x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When))
+                foreach (SpecFlowStep step in scenario.Steps
+                    .OfType<SpecFlowStep>()
+                    .Where(x => x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When)
+                    .Where(x => !metadata.IsIgnored(x)))
                 {
                     AddScenarioLineTest(_context.Document.SpecFlowFeature, scenario, step);
                 }

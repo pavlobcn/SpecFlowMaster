@@ -25,6 +25,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
             var config = ReadConfiguration();
             e.ObjectContainer.RegisterInstanceAs(config);
+            e.ObjectContainer.RegisterInstanceAs(new FeatureMetadataProvider());
         }
 
         private JsonConfig ReadConfiguration()

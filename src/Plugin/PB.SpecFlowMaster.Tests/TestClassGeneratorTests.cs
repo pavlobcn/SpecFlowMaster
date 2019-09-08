@@ -26,7 +26,8 @@ namespace PB.SpecFlowMaster.Tests
             using (Stream stream = typeof(TestClassGeneratorTests).Assembly.GetManifestResourceStream("PB.SpecFlowMaster.Tests.SpecFlowTarget.feature.txt"))
             using (StreamReader reader = new StreamReader(stream))
             {
-                document = parser.Parse(reader, @"C:\1.txt");
+                document = parser.Parse(reader,
+                    Path.Combine(TestContext.CurrentContext.TestDirectory, @"SpecFlowTarget.feature.txt"));
             }
 
             var codeNamespace = new CodeNamespace();
@@ -49,8 +50,13 @@ namespace PB.SpecFlowMaster.Tests
                 generateRowTests: false
             );
 
+            var objectContainer = new ObjectContainer();
+            objectContainer.RegisterInstanceAs(new FeatureMetadataProvider());
+            objectContainer.Resolve<FeatureMetadataProvider>()[context.Document] =
+                FeatureMetadata.GetFeatureMetadata(context.Document);
+
             var target = new MasterClassGenerator(
-                new ObjectContainer(), 
+                objectContainer, 
                 MasterClassGenerator.CreateContextFromOriginContext(context, context.UnitTestGeneratorProvider),
                 new CodeDomHelper(new CSharpCodeProvider()));
             target.Generate();

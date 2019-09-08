@@ -117,8 +117,21 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             BaseUnitTestGeneratorProvider.SetTestMethodAsRow(generationContext, testMethod, scenarioTitle, exampleSetName, variantName, arguments);
         }
 
+        private void SetupMetadata(TestClassGenerationContext generationContext, out bool isIgnored)
+        {
+            var metadata = FeatureMetadata.GetFeatureMetadata(generationContext.Document);
+            _container.Resolve<FeatureMetadataProvider>()[generationContext.Document] = metadata;
+            isIgnored = metadata.IsIgnored();
+        }
+
         private void GenerateMaster(TestClassGenerationContext generationContext)
         {
+            SetupMetadata(generationContext, out bool isIgnored);
+            if (isIgnored)
+            {
+                return;
+            }
+
             new MasterClassGenerator(
                 _container,
                 MasterClassGenerator.CreateContextFromOriginContext(generationContext,
