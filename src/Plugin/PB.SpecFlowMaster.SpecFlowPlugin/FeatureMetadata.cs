@@ -37,15 +37,20 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             var lines = File.ReadAllLines(document.SourceFilePath);
             metadata._isFeatureIgnored = ContainsAttribute(lines, document.Feature.Location, 0, IgnoreFeature);
             int previousElementLine = document.Feature.Location.Line;
-            foreach (Step backgroundStep in document.SpecFlowFeature.Background.Steps)
-            {
-                bool isIgnoredStep = ContainsAttribute(lines, backgroundStep.Location, previousElementLine, IgnoreStep);
-                if (isIgnoredStep)
-                {
-                    metadata._ignoredSteps.Add(backgroundStep);
-                }
 
-                previousElementLine = backgroundStep.Location.Line;
+            if (document.SpecFlowFeature.Background != null)
+            {
+                foreach (Step backgroundStep in document.SpecFlowFeature.Background.Steps)
+                {
+                    bool isIgnoredStep =
+                        ContainsAttribute(lines, backgroundStep.Location, previousElementLine, IgnoreStep);
+                    if (isIgnoredStep)
+                    {
+                        metadata._ignoredSteps.Add(backgroundStep);
+                    }
+
+                    previousElementLine = backgroundStep.Location.Line;
+                }
             }
 
             foreach (Scenario scenario in document.SpecFlowFeature.Children.OfType<Scenario>())

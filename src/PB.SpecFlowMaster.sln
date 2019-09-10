@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BCCE30
 		Examples\SpecFlowIgnoreFeature.feature = Examples\SpecFlowIgnoreFeature.feature
 		Examples\SpecFlowIgnoreScenario.feature = Examples\SpecFlowIgnoreScenario.feature
 		Examples\SpecFlowIgnoreStep.feature = Examples\SpecFlowIgnoreStep.feature
+		Examples\SpecFlowScenarioOutline.feature = Examples\SpecFlowScenarioOutline.feature
 		Examples\SpecFlowTarget.feature = Examples\SpecFlowTarget.feature
 		Examples\SpecFlowTargetSteps.cs = Examples\SpecFlowTargetSteps.cs
 	EndProjectSection
