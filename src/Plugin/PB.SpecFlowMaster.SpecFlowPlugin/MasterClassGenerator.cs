@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -16,6 +17,7 @@ using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Parser;
 using TechTalk.SpecFlow.Tracing;
 using ScenarioBlock = TechTalk.SpecFlow.Parser.ScenarioBlock;
+using TableRow = Gherkin.Ast.TableRow;
 
 namespace PB.SpecFlowMaster.SpecFlowPlugin
 {
@@ -238,6 +240,12 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 .OfType<Scenario>()
                 .Where(x => !metadata.IsIgnored(x)))
             {
+                ParameterSubstitution paramToIdentifier = null;
+                if (scenario is ScenarioOutline scenarioOutline)
+                {
+                    paramToIdentifier = CreateParamToIdentifierMapping(scenarioOutline);
+                }
+
                 // Generate tests only for GIVEN and WHEN statements
                 // because THEN statements are not actions and usually can be safely removed
                 foreach (SpecFlowStep step in scenario.Steps
@@ -245,7 +253,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     .Where(x => x.ScenarioBlock == ScenarioBlock.Given || x.ScenarioBlock == ScenarioBlock.When)
                     .Where(x => !metadata.IsIgnored(x)))
                 {
-                    AddScenarioLineTest(_context.Document.SpecFlowFeature, scenario, step);
+                    AddScenarioLineTest(_context.Document.SpecFlowFeature, scenario, step, paramToIdentifier);
                 }
             }
         }
@@ -459,7 +467,11 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             _codeDomHelper.BindTypeToSourceFile(testType, Path.GetFileName(sourceFile));
         }
 
-        private void AddScenarioLineTest(SpecFlowFeature feature, Scenario scenario, SpecFlowStep step)
+        private void AddScenarioLineTest(
+            SpecFlowFeature feature,
+            Scenario scenario,
+            SpecFlowStep step,
+            ParameterSubstitution paramToIdentifier)
         {
             // Test method
             var testMethod = new CodeMemberMethod
@@ -486,7 +498,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 Name = NamingHelper.GetTestStepsName(feature, step)
             };
 
-            AddActionStatementsForScenarioStep(feature, stepsMethod.Statements, scenario, step);
+            AddActionStatementsForScenarioStep(feature, stepsMethod.Statements, scenario, step, paramToIdentifier);
 
             _context.TestClass.Members.Add(stepsMethod);
 
@@ -552,23 +564,33 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             SpecFlowFeature feature,
             CodeStatementCollection statements,
             Scenario scenario,
-            SpecFlowStep step)
+            SpecFlowStep step,
+            ParameterSubstitution paramToIdentifier)
         {
-            if (feature.Background != null)
+            IEnumerable<TableRow> rows = new List<TableRow> { null };
+            if (scenario is ScenarioOutline scenarioOutline)
             {
-                foreach (SpecFlowStep backgroundStep in feature.Background.Steps)
-                {
-                    GenerateStep(statements, backgroundStep, null, backgroundStep.StepKeyword, backgroundStep.Keyword);
-                }
+                rows = scenario.Examples.SelectMany(exampleSet => exampleSet.TableBody);
             }
 
-            // TODO: fix 'And' for skipped step
-            foreach (SpecFlowStep scenarioStep in scenario.Steps.Where(x => x != step))
+            foreach (TableRow row in rows)
             {
-                FixStepKeyWordForScenarioStep(scenario, scenarioStep, step, out StepKeyword stepKeyWord,
-                    out string keyWord);
+                if (feature.Background != null)
+                {
+                    foreach (SpecFlowStep backgroundStep in feature.Background.Steps)
+                    {
+                        GenerateStep(statements, backgroundStep, null, null, backgroundStep.StepKeyword,
+                            backgroundStep.Keyword);
+                    }
+                }
 
-                GenerateStep(statements, scenarioStep, null, stepKeyWord, keyWord);
+                foreach (SpecFlowStep scenarioStep in scenario.Steps.Where(x => x != step))
+                {
+                    FixStepKeyWordForScenarioStep(scenario, scenarioStep, step, out StepKeyword stepKeyWord,
+                        out string keyWord);
+
+                    GenerateStep(statements, scenarioStep, paramToIdentifier, row, stepKeyWord, keyWord);
+                }
             }
         }
 
@@ -611,26 +633,34 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             foreach (Scenario scenario in feature.Children.OfType<Scenario>())
             {
-                // TODO: fix 'And' for skipped step
-                foreach (SpecFlowStep backgroundStep in feature.Background.Steps.Where(x => x != step))
+                IEnumerable<TableRow> rows = new List<TableRow> { null };
+                if (scenario is ScenarioOutline scenarioOutline)
                 {
-                    FixStepKeyWordForScenarioStep(feature, backgroundStep, step, out StepKeyword stepKeyWord,
-                        out string keyWord);
-
-                    GenerateStep(statements, backgroundStep, null, stepKeyWord, keyWord);
+                    rows = scenario.Examples.SelectMany(exampleSet => exampleSet.TableBody);
                 }
 
-                foreach (SpecFlowStep scenarioStep in scenario.Steps)
+                foreach (TableRow row in rows)
                 {
-                    GenerateStep(statements, scenarioStep, null, scenarioStep.StepKeyword, scenarioStep.Keyword);
+                    foreach (SpecFlowStep backgroundStep in feature.Background.Steps.Where(x => x != step))
+                    {
+                        FixStepKeyWordForScenarioStep(feature, backgroundStep, step, out StepKeyword stepKeyWord,
+                            out string keyWord);
+
+                        GenerateStep(statements, backgroundStep, null, null, stepKeyWord, keyWord);
+                    }
+
+                    foreach (SpecFlowStep scenarioStep in scenario.Steps)
+                    {
+                        GenerateStep(statements, scenarioStep, null, row, scenarioStep.StepKeyword, scenarioStep.Keyword);
+                    }
                 }
             }
         }
 
-        private void GenerateStep(
-            CodeStatementCollection statements,
+        private void GenerateStep(CodeStatementCollection statements,
             Step scenarioStep,
             ParameterSubstitution paramToIdentifier,
+            TableRow row,
             StepKeyword stepKeyWord,
             string keyWord)
         {
@@ -639,8 +669,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             //testRunner.Given("something");
             var arguments = new List<CodeExpression>
             {
-                GetSubstitutedString(scenarioStep.Text, paramToIdentifier),
-                GetDocStringArgExpression(scenarioStep.Argument as DocString, paramToIdentifier),
+                GetSubstitutedString(scenarioStep.Text, paramToIdentifier, row),
+                GetDocStringArgExpression(scenarioStep.Argument as DocString, paramToIdentifier, row),
                 GetTableArgExpression(scenarioStep.Argument as DataTable, statements, paramToIdentifier),
                 new CodePrimitiveExpression(keyWord)
             };
@@ -679,7 +709,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeVariableDeclarationStatement(typeof(Table), tableVar.VariableName,
                     new CodeObjectCreateExpression(
                         typeof(Table),
-                        GetStringArrayExpression(header.Cells.Select(c => c.Value), paramToIdentifier))));
+                        GetStringArrayExpression(header.Cells.Select(c => c.Value), paramToIdentifier, null /* TODO: fix params for table */))));
 
             foreach (var row in body)
             {
@@ -688,38 +718,40 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     new CodeMethodInvokeExpression(
                         tableVar,
                         "AddRow",
-                        GetStringArrayExpression(row.Cells.Select(c => c.Value), paramToIdentifier)));
+                        GetStringArrayExpression(row.Cells.Select(c => c.Value), paramToIdentifier, null /* TODO: fix params for table */)));
             }
 
             return tableVar;
         }
 
-        private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier)
+        private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier, TableRow row)
         {
-            return new CodeArrayCreateExpression(typeof(string[]), items.Select(item => GetSubstitutedString(item, paramToIdentifier)).ToArray());
+            return new CodeArrayCreateExpression(typeof(string[]), items.Select(item => GetSubstitutedString(item, paramToIdentifier, row)).ToArray());
         }
 
 
-        private CodeExpression GetDocStringArgExpression(DocString docString, ParameterSubstitution paramToIdentifier)
+        private CodeExpression GetDocStringArgExpression(DocString docString, ParameterSubstitution paramToIdentifier, TableRow row)
         {
-            return GetSubstitutedString(docString == null ? null : docString.Content, paramToIdentifier);
+            return GetSubstitutedString(docString == null ? null : docString.Content, paramToIdentifier, row);
         }
 
-        private CodeExpression GetSubstitutedString(string text, ParameterSubstitution paramToIdentifier)
+        private CodeExpression GetSubstitutedString(string text, ParameterSubstitution paramToIdentifier, TableRow row)
         {
             if (text == null)
                 return new CodeCastExpression(typeof(string), new CodePrimitiveExpression(null));
             if (paramToIdentifier == null)
                 return new CodePrimitiveExpression(text);
+            if (row == null)
+                return new CodePrimitiveExpression(text);
 
             Regex paramRe = new Regex(@"\<(?<param>[^\>]+)\>");
             string formatText = text.Replace("{", "{{").Replace("}", "}}");
-            List<string> arguments = new List<string>();
+            List<int> arguments = new List<int>();
 
             formatText = paramRe.Replace(formatText, match =>
             {
                 string param = match.Groups["param"].Value;
-                string id;
+                int id;
                 if (!paramToIdentifier.TryGetIdentifier(param, out id))
                     return match.Value;
                 int argIndex = arguments.IndexOf(id);
@@ -737,12 +769,25 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
             List<CodeExpression> formatArguments = new List<CodeExpression>();
             formatArguments.Add(new CodePrimitiveExpression(formatText));
-            formatArguments.AddRange(arguments.Select(id => new CodeVariableReferenceExpression(id)));
+            formatArguments.AddRange(arguments.Select(id => new CodePrimitiveExpression(row.Cells.ElementAt(id).Value)));
 
             return new CodeMethodInvokeExpression(
                 new CodeTypeReferenceExpression(typeof(string)),
                 "Format",
                 formatArguments.ToArray());
+        }
+
+        private ParameterSubstitution CreateParamToIdentifierMapping(ScenarioOutline scenarioOutline)
+        {
+            ParameterSubstitution paramToIdentifier = new ParameterSubstitution();
+            int index = 0;
+            foreach (var param in scenarioOutline.Examples.First().TableHeader.Cells)
+            {
+                paramToIdentifier.Add(param.Value, index);
+                index++;
+            }
+
+            return paramToIdentifier;
         }
     }
 
@@ -778,27 +823,27 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         }
     }
 
-    // TODO: replace with existing class from TechTalk.SpecFlow.Generator
-    internal class ParameterSubstitution : List<KeyValuePair<string, string>>
+    internal class ParameterSubstitution : List<KeyValuePair<string, int>>
     {
-        public void Add(string parameter, string identifier)
+        public void Add(string parameter, int index)
         {
-            Add(new KeyValuePair<string, string>(parameter.Trim(), identifier));
+            Add(new KeyValuePair<string, int>(parameter.Trim(), index));
         }
 
-        public bool TryGetIdentifier(string param, out string id)
+        public bool TryGetIdentifier(string param, out int index)
         {
             param = param.Trim();
             foreach (var pair in this)
             {
                 if (pair.Key.Equals(param))
                 {
-                    id = pair.Value;
+                    index = pair.Value;
                     return true;
                 }
             }
 
-            id = null;
+            // Indicate invalid indexing
+            index = -1;
             return false;
         }
     }

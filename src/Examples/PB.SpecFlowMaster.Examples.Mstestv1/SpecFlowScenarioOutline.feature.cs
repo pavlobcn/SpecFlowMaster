@@ -101,7 +101,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Then(string.Format("executed Given step with parameter {0}", param1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And(string.Format("executed Given step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.When(string.Format("execute with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then(string.Format("executed Given step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -171,6 +171,53 @@ this.TestWithUnnecessarySteps("10", "20", ((string[])(null)));
         {
 #line 14
 this.TestWithUnnecessarySteps("20", "30", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void TestWithUnnecessaryStepsAndTableAsAParameter(string param1, string param2, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps and table as a parameter", null, exampleTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", param1)});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table1, "Given ");
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test with unnecessary steps and table as a parameter: 10")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "10")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Param1", "10")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Param2", "20")]
+        public virtual void TestWithUnnecessaryStepsAndTableAsAParameter_10()
+        {
+#line 24
+this.TestWithUnnecessaryStepsAndTableAsAParameter("10", "20", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test with unnecessary steps and table as a parameter: 20")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "20")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Param1", "20")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Param2", "30")]
+        public virtual void TestWithUnnecessaryStepsAndTableAsAParameter_20()
+        {
+#line 24
+this.TestWithUnnecessaryStepsAndTableAsAParameter("20", "30", ((string[])(null)));
 #line hidden
         }
     }
@@ -282,11 +329,17 @@ this.TestWithUnnecessarySteps("20", "30", ((string[])(null)));
         private void TestLine05StepWithParameterParam1Steps()
         {
 #line 6
- testRunner.When("execute with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("executed Given step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -300,11 +353,17 @@ this.TestWithUnnecessarySteps("20", "30", ((string[])(null)));
         private void TestLine06ExecuteWithParameterParam2Steps()
         {
 #line 5
- testRunner.Given("step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Then("executed Given step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 5
+ testRunner.Given(string.Format("step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -318,9 +377,13 @@ this.TestWithUnnecessarySteps("20", "30", ((string[])(null)));
         private void TestLine16StepWithParameterParam1Steps()
         {
 #line 17
- testRunner.When("execute with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -334,9 +397,61 @@ this.TestWithUnnecessarySteps("20", "30", ((string[])(null)));
         private void TestLine17ExecuteWithParameterParam2Steps()
         {
 #line 16
- testRunner.Given("step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.Then("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Given(string.Format("step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("TestLine26StepWithParameters")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        public virtual void TestLine26StepWithParameters()
+        {
+            this.Test(this.TestLine26StepWithParametersSteps, 26);
+        }
+        
+        private void TestLine26StepWithParametersSteps()
+        {
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("TestLine29ExecuteWithParameterParam2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        public virtual void TestLine29ExecuteWithParameterParam2()
+        {
+            this.Test(this.TestLine29ExecuteWithParameterParam2Steps, 29);
+        }
+        
+        private void TestLine29ExecuteWithParameterParam2Steps()
+        {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table1.AddRow(new string[] {
+                        "<Param1>"});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table1, "Given ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table2.AddRow(new string[] {
+                        "<Param1>"});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table2, "Given ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
     }
 }

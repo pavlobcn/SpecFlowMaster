@@ -63,16 +63,19 @@ namespace PB.SpecFlowMaster.Tests
 
             using (var outputWriter = new StringWriter())
             {
-                var codeProvider = new CSharpCodeProvider();
-                var options = new CodeGeneratorOptions
+                using (var codeProvider = new CSharpCodeProvider())
                 {
-                    BracingStyle = "C",
-                };
 
-                codeProvider.GenerateCodeFromNamespace(codeNamespace, outputWriter, options);
+                    var options = new CodeGeneratorOptions
+                    {
+                        BracingStyle = "C",
+                    };
 
-                outputWriter.Flush();
-                var generatedTestCode = outputWriter.ToString();
+                    codeProvider.GenerateCodeFromNamespace(codeNamespace, outputWriter, options);
+
+                    outputWriter.Flush();
+                    var generatedTestCode = outputWriter.ToString();
+                }
             }
         }
     }

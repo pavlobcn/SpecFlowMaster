@@ -10,15 +10,16 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PB.SpecFlowMaster.Examples.Nunit2
+namespace PB.SpecFlowMaster.Examples.Mbunit3
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowScenarioOutline")]
+    [MbUnit.Framework.TestFixtureAttribute()]
+    [MbUnit.Framework.DescriptionAttribute("\tTest to check which steps in scenario outline execution are really needed for go" +
+        "od tests")]
     public partial class SpecFlowScenarioOutlineFeature
     {
         
@@ -27,28 +28,28 @@ namespace PB.SpecFlowMaster.Examples.Nunit2
 #line 1 "SpecFlowScenarioOutline.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [MbUnit.Framework.FixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
-            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
+            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowScenarioOutline", "\tTest to check which steps in scenario outline execution are really needed for go" +
                     "od tests", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [MbUnit.Framework.FixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
+        [MbUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [MbUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -57,7 +58,6 @@ namespace PB.SpecFlowMaster.Examples.Nunit2
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -70,10 +70,10 @@ namespace PB.SpecFlowMaster.Examples.Nunit2
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test without unnecessary steps")]
-        [NUnit.Framework.TestCaseAttribute("10", "20", null)]
-        [NUnit.Framework.TestCaseAttribute("20", "30", null)]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("Test without unnecessary steps")]
+        [MbUnit.Framework.RowAttribute("10", "20", new string[0])]
+        [MbUnit.Framework.RowAttribute("20", "30", new string[0])]
         public virtual void TestWithoutUnnecessarySteps(string param1, string param2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test without unnecessary steps", null, exampleTags);
@@ -92,10 +92,10 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test with unnecessary steps")]
-        [NUnit.Framework.TestCaseAttribute("10", "20", null)]
-        [NUnit.Framework.TestCaseAttribute("20", "30", null)]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("Test with unnecessary steps")]
+        [MbUnit.Framework.RowAttribute("10", "20", new string[0])]
+        [MbUnit.Framework.RowAttribute("20", "30", new string[0])]
         public virtual void TestWithUnnecessarySteps(string param1, string param2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps", null, exampleTags);
@@ -112,10 +112,10 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test with unnecessary steps and table as a parameter")]
-        [NUnit.Framework.TestCaseAttribute("10", "20", null)]
-        [NUnit.Framework.TestCaseAttribute("20", "30", null)]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("Test with unnecessary steps and table as a parameter")]
+        [MbUnit.Framework.RowAttribute("10", "20", new string[0])]
+        [MbUnit.Framework.RowAttribute("20", "30", new string[0])]
         public virtual void TestWithUnnecessaryStepsAndTableAsAParameter(string param1, string param2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps and table as a parameter", null, exampleTags);
@@ -138,8 +138,9 @@ this.ScenarioInitialize(scenarioInfo);
         }
     }
     
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SpecFlowScenarioOutline")]
+    [MbUnit.Framework.TestFixtureAttribute()]
+    [MbUnit.Framework.DescriptionAttribute("\tTest to check which steps in scenario outline execution are really needed for go" +
+        "od tests")]
     public partial class SpecFlowScenarioOutlineFeatureMaster
     {
         
@@ -148,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 1 "SpecFlowScenarioOutline.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [MbUnit.Framework.FixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
@@ -157,19 +158,19 @@ this.ScenarioInitialize(scenarioInfo);
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [MbUnit.Framework.FixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
+        [MbUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [MbUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -178,7 +179,6 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
         public virtual void ScenarioStart()
@@ -216,8 +216,8 @@ this.ScenarioInitialize(scenarioInfo);
             }
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine05StepWithParameterParam1")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine05StepWithParameterParam1")]
         public virtual void TestLine05StepWithParameterParam1()
         {
             this.Test(this.TestLine05StepWithParameterParam1Steps, 5);
@@ -239,8 +239,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine06ExecuteWithParameterParam2")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine06ExecuteWithParameterParam2")]
         public virtual void TestLine06ExecuteWithParameterParam2()
         {
             this.Test(this.TestLine06ExecuteWithParameterParam2Steps, 6);
@@ -262,8 +262,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine16StepWithParameterParam1")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine16StepWithParameterParam1")]
         public virtual void TestLine16StepWithParameterParam1()
         {
             this.Test(this.TestLine16StepWithParameterParam1Steps, 16);
@@ -281,8 +281,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine17ExecuteWithParameterParam2")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine17ExecuteWithParameterParam2")]
         public virtual void TestLine17ExecuteWithParameterParam2()
         {
             this.Test(this.TestLine17ExecuteWithParameterParam2Steps, 17);
@@ -300,8 +300,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine26StepWithParameters")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine26StepWithParameters")]
         public virtual void TestLine26StepWithParameters()
         {
             this.Test(this.TestLine26StepWithParametersSteps, 26);
@@ -319,8 +319,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TestLine29ExecuteWithParameterParam2")]
+        [MbUnit.Framework.TestAttribute()]
+        [MbUnit.Framework.DescriptionAttribute("TestLine29ExecuteWithParameterParam2")]
         public virtual void TestLine29ExecuteWithParameterParam2()
         {
             this.Test(this.TestLine29ExecuteWithParameterParam2Steps, 29);

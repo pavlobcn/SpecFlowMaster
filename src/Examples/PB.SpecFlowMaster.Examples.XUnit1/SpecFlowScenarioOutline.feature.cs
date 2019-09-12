@@ -95,7 +95,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Then(string.Format("executed Given step with parameter {0}", param1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And(string.Format("executed Given step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -116,7 +116,33 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.When(string.Format("execute with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then(string.Format("executed Given step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.Extensions.TheoryAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        [Xunit.TraitAttribute("Description", "Test with unnecessary steps and table as a parameter")]
+        [Xunit.Extensions.InlineDataAttribute("10", "20", new string[0])]
+        [Xunit.Extensions.InlineDataAttribute("20", "30", new string[0])]
+        public virtual void TestWithUnnecessaryStepsAndTableAsAParameter(string param1, string param2, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test with unnecessary steps and table as a parameter", null, exampleTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", param1)});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table1, "Given ");
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", param2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -234,11 +260,17 @@ this.ScenarioInitialize(scenarioInfo);
         private void TestLine05StepWithParameterParam1Steps()
         {
 #line 6
- testRunner.When("execute with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("executed Given step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine06ExecuteWithParameterParam2")]
@@ -252,11 +284,17 @@ this.ScenarioInitialize(scenarioInfo);
         private void TestLine06ExecuteWithParameterParam2Steps()
         {
 #line 5
- testRunner.Given("step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Then("executed Given step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 5
+ testRunner.Given(string.Format("step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine16StepWithParameterParam1")]
@@ -270,9 +308,13 @@ this.ScenarioInitialize(scenarioInfo);
         private void TestLine16StepWithParameterParam1Steps()
         {
 #line 17
- testRunner.When("execute with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine17ExecuteWithParameterParam2")]
@@ -286,9 +328,61 @@ this.ScenarioInitialize(scenarioInfo);
         private void TestLine17ExecuteWithParameterParam2Steps()
         {
 #line 16
- testRunner.Given("step with parameter <Param1>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("step with parameter {0}", "10"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.Then("executed Given step with parameter <Param2>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Given(string.Format("step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        }
+        
+        [Xunit.FactAttribute(DisplayName="TestLine26StepWithParameters")]
+        [Xunit.TraitAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        [Xunit.TraitAttribute("Description", "TestLine26StepWithParameters")]
+        public virtual void TestLine26StepWithParameters()
+        {
+            this.Test(this.TestLine26StepWithParametersSteps, 26);
+        }
+        
+        private void TestLine26StepWithParametersSteps()
+        {
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+ testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        }
+        
+        [Xunit.FactAttribute(DisplayName="TestLine29ExecuteWithParameterParam2")]
+        [Xunit.TraitAttribute("FeatureTitle", "SpecFlowScenarioOutline")]
+        [Xunit.TraitAttribute("Description", "TestLine29ExecuteWithParameterParam2")]
+        public virtual void TestLine29ExecuteWithParameterParam2()
+        {
+            this.Test(this.TestLine29ExecuteWithParameterParam2Steps, 29);
+        }
+        
+        private void TestLine29ExecuteWithParameterParam2Steps()
+        {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table1.AddRow(new string[] {
+                        "<Param1>"});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table1, "Given ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ParamValue"});
+            table2.AddRow(new string[] {
+                        "<Param1>"});
+#line 26
+ testRunner.Given("step with parameters", ((string)(null)), table2, "Given ");
+#line 30
+ testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]

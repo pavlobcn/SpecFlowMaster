@@ -15,6 +15,15 @@ namespace PB.SpecFlowMaster.Examples
             _givenExecutionParameters.Add(parameter);
         }
 
+        [Given(@"step with parameters")]
+        public void GivenStepWithParameter(Table table)
+        {
+            foreach (TableRow row in table.Rows)
+            {
+                _givenExecutionParameters.Add(int.Parse(row["ParamValue"]));
+            }
+        }
+
         [When(@"execute with parameter (.*)")]
         public void WhenExecuteWithParameter(int parameter)
         {
