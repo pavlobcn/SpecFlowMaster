@@ -370,7 +370,7 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "ParamValue"});
             table1.AddRow(new string[] {
-                        "<Param1>"});
+                        "10"});
 #line 26
  testRunner.Given("step with parameters", ((string)(null)), table1, "Given ");
 #line 30
@@ -378,7 +378,7 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "ParamValue"});
             table2.AddRow(new string[] {
-                        "<Param1>"});
+                        "20"});
 #line 26
  testRunner.Given("step with parameters", ((string)(null)), table2, "Given ");
 #line 30

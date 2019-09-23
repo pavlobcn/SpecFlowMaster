@@ -6,8 +6,14 @@ namespace PB.SpecFlowMaster.Examples
     [Binding]
     public class SpecFlowTargetSteps : Steps
     {
-        private readonly HashSet<int> _givenExecutionParameters = new HashSet<int>();
-        private readonly HashSet<int> _whenExecutionParameters = new HashSet<int>();
+        private readonly HashSet<int> _givenExecutionParameters;
+        private readonly HashSet<int> _whenExecutionParameters;
+
+        public SpecFlowTargetSteps()
+        {
+            _givenExecutionParameters = new HashSet<int>();
+            _whenExecutionParameters = new HashSet<int>();
+        }
 
         [Given(@"step with parameter (.*)")]
         public void GivenStepWithParameter(int parameter)

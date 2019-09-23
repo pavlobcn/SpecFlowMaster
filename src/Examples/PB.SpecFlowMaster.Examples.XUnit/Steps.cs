@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
+
+[assembly:CollectionBehavior(DisableTestParallelization = true)]
 
 // ReSharper disable once CheckNamespace
 namespace PB.SpecFlowMaster.Examples
@@ -7,7 +10,15 @@ namespace PB.SpecFlowMaster.Examples
     {
         protected void AreEqual(object expected, object actual)
         {
-            Assert.Equal(expected, actual);
+            try
+            {
+                Assert.Equal(expected, actual);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
