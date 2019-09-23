@@ -10,15 +10,7 @@ namespace PB.SpecFlowMaster.Examples
     {
         protected void AreEqual(object expected, object actual)
         {
-            try
-            {
-                Assert.Equal(expected, actual);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            Assert.Equal(expected, actual);
         }
     }
 }
