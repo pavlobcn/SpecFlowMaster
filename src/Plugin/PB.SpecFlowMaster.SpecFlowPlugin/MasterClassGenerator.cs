@@ -671,7 +671,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             {
                 GetSubstitutedString(scenarioStep.Text, paramToIdentifier, row),
                 GetDocStringArgExpression(scenarioStep.Argument as DocString, paramToIdentifier, row),
-                GetTableArgExpression(scenarioStep.Argument as DataTable, statements, paramToIdentifier),
+                GetTableArgExpression(scenarioStep.Argument as DataTable, statements, paramToIdentifier, row),
                 new CodePrimitiveExpression(keyWord)
             };
 
@@ -692,7 +692,11 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             return specFlowStep;
         }
 
-        private CodeExpression GetTableArgExpression(DataTable tableArg, CodeStatementCollection statements, ParameterSubstitution paramToIdentifier)
+        private CodeExpression GetTableArgExpression(
+            DataTable tableArg,
+            CodeStatementCollection statements,
+            ParameterSubstitution paramToIdentifier,
+            TableRow parametersRow)
         {
             if (tableArg == null)
                 return new CodeCastExpression(typeof(Table), new CodePrimitiveExpression(null));
@@ -709,7 +713,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeVariableDeclarationStatement(typeof(Table), tableVar.VariableName,
                     new CodeObjectCreateExpression(
                         typeof(Table),
-                        GetStringArrayExpression(header.Cells.Select(c => c.Value), paramToIdentifier, null /* TODO: fix params for table */))));
+                        GetStringArrayExpression(header.Cells.Select(c => c.Value), paramToIdentifier, null))));
 
             foreach (var row in body)
             {
@@ -718,10 +722,30 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     new CodeMethodInvokeExpression(
                         tableVar,
                         "AddRow",
-                        GetStringArrayExpression(row.Cells.Select(c => c.Value), paramToIdentifier, null /* TODO: fix params for table */)));
+                        GetStringArrayExpression(row.Cells.Select(cell => GetCellValue(cell, paramToIdentifier, parametersRow)), paramToIdentifier, 
+                            null)));
             }
 
             return tableVar;
+        }
+
+        private static string GetCellValue(TableCell cell, ParameterSubstitution paramToIdentifier,
+            TableRow parametersRow)
+        {
+            var cellValue = cell.Value.Trim();
+            if (parametersRow == null)
+            {
+                return cellValue;
+            }
+
+            if (cellValue.StartsWith("<") && cellValue.EndsWith(">") &&
+                paramToIdentifier.TryGetIdentifier(cellValue.Substring(1, cellValue.Length - 2), out int paramIndex))
+            {
+                cellValue = parametersRow.Cells.ElementAt(paramToIdentifier[paramIndex].Value).Value;
+                return cellValue;
+            }
+
+            return cellValue;
         }
 
         private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier, TableRow row)
