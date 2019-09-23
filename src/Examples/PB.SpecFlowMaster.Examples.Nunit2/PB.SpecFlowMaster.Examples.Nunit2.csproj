@@ -42,4 +42,8 @@
     </SpecFlowFeatureFiles>
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="BeforeUpdateFeatureFilesInProject">
+    <Exec Command="copy &quot;$(ProjectDir)\..\*.feature&quot; &quot;$(ProjectDir)&quot;" />
+  </Target>
+
 </Project>

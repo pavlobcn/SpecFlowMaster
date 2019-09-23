@@ -23,7 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BCCE3003-4D14-4867-8B2C-43922AE063E0}"
 	ProjectSection(SolutionItems) = preProject
-		Examples\Directory.Build.props = Examples\Directory.Build.props
 		Examples\SpecFlowIgnoreFeature.feature = Examples\SpecFlowIgnoreFeature.feature
 		Examples\SpecFlowIgnoreScenario.feature = Examples\SpecFlowIgnoreScenario.feature
 		Examples\SpecFlowIgnoreStep.feature = Examples\SpecFlowIgnoreStep.feature
