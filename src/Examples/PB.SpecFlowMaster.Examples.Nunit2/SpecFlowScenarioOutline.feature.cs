@@ -220,7 +220,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine05StepWithParameterParam1")]
         public virtual void TestLine05StepWithParameterParam1()
         {
-            this.Test(this.TestLine05StepWithParameterParam1Steps, 5);
+            this.Test(new System.Action(this.TestLine05StepWithParameterParam1Steps), 5);
         }
         
         private void TestLine05StepWithParameterParam1Steps()
@@ -243,7 +243,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine06ExecuteWithParameterParam2")]
         public virtual void TestLine06ExecuteWithParameterParam2()
         {
-            this.Test(this.TestLine06ExecuteWithParameterParam2Steps, 6);
+            this.Test(new System.Action(this.TestLine06ExecuteWithParameterParam2Steps), 6);
         }
         
         private void TestLine06ExecuteWithParameterParam2Steps()
@@ -266,7 +266,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine16StepWithParameterParam1")]
         public virtual void TestLine16StepWithParameterParam1()
         {
-            this.Test(this.TestLine16StepWithParameterParam1Steps, 16);
+            this.Test(new System.Action(this.TestLine16StepWithParameterParam1Steps), 16);
         }
         
         private void TestLine16StepWithParameterParam1Steps()
@@ -285,7 +285,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine17ExecuteWithParameterParam2")]
         public virtual void TestLine17ExecuteWithParameterParam2()
         {
-            this.Test(this.TestLine17ExecuteWithParameterParam2Steps, 17);
+            this.Test(new System.Action(this.TestLine17ExecuteWithParameterParam2Steps), 17);
         }
         
         private void TestLine17ExecuteWithParameterParam2Steps()
@@ -304,7 +304,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine26StepWithParameters")]
         public virtual void TestLine26StepWithParameters()
         {
-            this.Test(this.TestLine26StepWithParametersSteps, 26);
+            this.Test(new System.Action(this.TestLine26StepWithParametersSteps), 26);
         }
         
         private void TestLine26StepWithParametersSteps()
@@ -323,7 +323,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("TestLine29ExecuteWithParameterParam2")]
         public virtual void TestLine29ExecuteWithParameterParam2()
         {
-            this.Test(this.TestLine29ExecuteWithParameterParam2Steps, 29);
+            this.Test(new System.Action(this.TestLine29ExecuteWithParameterParam2Steps), 29);
         }
         
         private void TestLine29ExecuteWithParameterParam2Steps()

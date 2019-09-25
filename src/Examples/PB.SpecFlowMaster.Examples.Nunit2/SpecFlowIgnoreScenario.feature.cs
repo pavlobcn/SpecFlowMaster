@@ -207,7 +207,7 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("TestLine05StepWithParameter10")]
         public virtual void TestLine05StepWithParameter10()
         {
-            this.Test(this.TestLine05StepWithParameter10Steps, 5);
+            this.Test(new System.Action(this.TestLine05StepWithParameter10Steps), 5);
         }
         
         private void TestLine05StepWithParameter10Steps()
@@ -238,7 +238,7 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("TestLine06ExecuteWithParameter20")]
         public virtual void TestLine06ExecuteWithParameter20()
         {
-            this.Test(this.TestLine06ExecuteWithParameter20Steps, 6);
+            this.Test(new System.Action(this.TestLine06ExecuteWithParameter20Steps), 6);
         }
         
         private void TestLine06ExecuteWithParameter20Steps()
@@ -269,7 +269,7 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("TestLine14StepWithParameter110")]
         public virtual void TestLine14StepWithParameter110()
         {
-            this.Test(this.TestLine14StepWithParameter110Steps, 14);
+            this.Test(new System.Action(this.TestLine14StepWithParameter110Steps), 14);
         }
         
         private void TestLine14StepWithParameter110Steps()
@@ -294,7 +294,7 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("TestLine15ExecuteWithParameter130")]
         public virtual void TestLine15ExecuteWithParameter130()
         {
-            this.Test(this.TestLine15ExecuteWithParameter130Steps, 15);
+            this.Test(new System.Action(this.TestLine15ExecuteWithParameter130Steps), 15);
         }
         
         private void TestLine15ExecuteWithParameter130Steps()

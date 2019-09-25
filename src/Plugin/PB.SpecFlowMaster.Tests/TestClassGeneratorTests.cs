@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using BoDi;
 using Microsoft.CSharp;
+using Microsoft.VisualBasic;
 using NUnit.Framework;
 using PB.SpecFlowMaster.SpecFlowPlugin;
 using TechTalk.SpecFlow.Generator;
@@ -19,6 +20,7 @@ namespace PB.SpecFlowMaster.Tests
         [Test]
         public void Test1()
         {
+            CodeDomProvider codeProvider = new VBCodeProvider();
             var specFlowGherkinParserFactory = new SpecFlowGherkinParserFactory();
             var parser = specFlowGherkinParserFactory.Create(new CultureInfo("en-gb"));
             SpecFlowDocument document;
@@ -34,7 +36,7 @@ namespace PB.SpecFlowMaster.Tests
             var testClass = new CodeTypeDeclaration("FeatureTest");
             codeNamespace.Types.Add(testClass);
             var context = new TestClassGenerationContext(
-                unitTestGeneratorProvider: new NUnit3TestGeneratorProvider(new CodeDomHelper(new CSharpCodeProvider())),
+                unitTestGeneratorProvider: new NUnit3TestGeneratorProvider(new CodeDomHelper(codeProvider)),
                 document: document,
                 ns: codeNamespace,
                 testClass: testClass,
@@ -58,12 +60,12 @@ namespace PB.SpecFlowMaster.Tests
             var target = new MasterClassGenerator(
                 objectContainer, 
                 MasterClassGenerator.CreateContextFromOriginContext(context, context.UnitTestGeneratorProvider),
-                new CodeDomHelper(new CSharpCodeProvider()));
+                new CodeDomHelper(codeProvider));
             target.Generate();
 
             using (var outputWriter = new StringWriter())
             {
-                using (var codeProvider = new CSharpCodeProvider())
+                using (codeProvider)
                 {
 
                     var options = new CodeGeneratorOptions

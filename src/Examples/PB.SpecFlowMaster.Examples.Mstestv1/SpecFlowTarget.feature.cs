@@ -399,7 +399,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine06StepWithParameter9()
         {
-            this.Test(this.TestLine06StepWithParameter9Steps, 6);
+            this.Test(new System.Action(this.TestLine06StepWithParameter9Steps), 6);
         }
         
         private void TestLine06StepWithParameter9Steps()
@@ -593,7 +593,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine07StepWithParameter10()
         {
-            this.Test(this.TestLine07StepWithParameter10Steps, 7);
+            this.Test(new System.Action(this.TestLine07StepWithParameter10Steps), 7);
         }
         
         private void TestLine07StepWithParameter10Steps()
@@ -787,7 +787,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine08StepWithParameter20()
         {
-            this.Test(this.TestLine08StepWithParameter20Steps, 8);
+            this.Test(new System.Action(this.TestLine08StepWithParameter20Steps), 8);
         }
         
         private void TestLine08StepWithParameter20Steps()
@@ -981,7 +981,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine10StepWithParameter21()
         {
-            this.Test(this.TestLine10StepWithParameter21Steps, 10);
+            this.Test(new System.Action(this.TestLine10StepWithParameter21Steps), 10);
         }
         
         private void TestLine10StepWithParameter21Steps()
@@ -1175,7 +1175,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine12ExecuteWithParameter29()
         {
-            this.Test(this.TestLine12ExecuteWithParameter29Steps, 12);
+            this.Test(new System.Action(this.TestLine12ExecuteWithParameter29Steps), 12);
         }
         
         private void TestLine12ExecuteWithParameter29Steps()
@@ -1369,7 +1369,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine13ExecuteWithParameter30()
         {
-            this.Test(this.TestLine13ExecuteWithParameter30Steps, 13);
+            this.Test(new System.Action(this.TestLine13ExecuteWithParameter30Steps), 13);
         }
         
         private void TestLine13ExecuteWithParameter30Steps()
@@ -1563,7 +1563,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine14ExecuteWithParameter40()
         {
-            this.Test(this.TestLine14ExecuteWithParameter40Steps, 14);
+            this.Test(new System.Action(this.TestLine14ExecuteWithParameter40Steps), 14);
         }
         
         private void TestLine14ExecuteWithParameter40Steps()
@@ -1757,7 +1757,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine16ExecuteWithParameter41()
         {
-            this.Test(this.TestLine16ExecuteWithParameter41Steps, 16);
+            this.Test(new System.Action(this.TestLine16ExecuteWithParameter41Steps), 16);
         }
         
         private void TestLine16ExecuteWithParameter41Steps()
@@ -1951,7 +1951,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine19StepWithParameter110()
         {
-            this.Test(this.TestLine19StepWithParameter110Steps, 19);
+            this.Test(new System.Action(this.TestLine19StepWithParameter110Steps), 19);
         }
         
         private void TestLine19StepWithParameter110Steps()
@@ -2001,7 +2001,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine20StepWithParameter120()
         {
-            this.Test(this.TestLine20StepWithParameter120Steps, 20);
+            this.Test(new System.Action(this.TestLine20StepWithParameter120Steps), 20);
         }
         
         private void TestLine20StepWithParameter120Steps()
@@ -2051,7 +2051,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine21ExecuteWithParameter130()
         {
-            this.Test(this.TestLine21ExecuteWithParameter130Steps, 21);
+            this.Test(new System.Action(this.TestLine21ExecuteWithParameter130Steps), 21);
         }
         
         private void TestLine21ExecuteWithParameter130Steps()
@@ -2101,7 +2101,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine22ExecuteWithParameter140()
         {
-            this.Test(this.TestLine22ExecuteWithParameter140Steps, 22);
+            this.Test(new System.Action(this.TestLine22ExecuteWithParameter140Steps), 22);
         }
         
         private void TestLine22ExecuteWithParameter140Steps()
@@ -2151,7 +2151,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine34StepWithParameter110()
         {
-            this.Test(this.TestLine34StepWithParameter110Steps, 34);
+            this.Test(new System.Action(this.TestLine34StepWithParameter110Steps), 34);
         }
         
         private void TestLine34StepWithParameter110Steps()
@@ -2199,7 +2199,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine35StepWithParameter120()
         {
-            this.Test(this.TestLine35StepWithParameter120Steps, 35);
+            this.Test(new System.Action(this.TestLine35StepWithParameter120Steps), 35);
         }
         
         private void TestLine35StepWithParameter120Steps()
@@ -2247,7 +2247,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine36ExecuteWithParameter130()
         {
-            this.Test(this.TestLine36ExecuteWithParameter130Steps, 36);
+            this.Test(new System.Action(this.TestLine36ExecuteWithParameter130Steps), 36);
         }
         
         private void TestLine36ExecuteWithParameter130Steps()
@@ -2295,7 +2295,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine37ExecuteWithParameter140()
         {
-            this.Test(this.TestLine37ExecuteWithParameter140Steps, 37);
+            this.Test(new System.Action(this.TestLine37ExecuteWithParameter140Steps), 37);
         }
         
         private void TestLine37ExecuteWithParameter140Steps()
@@ -2343,7 +2343,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine47StepWithParameter110()
         {
-            this.Test(this.TestLine47StepWithParameter110Steps, 47);
+            this.Test(new System.Action(this.TestLine47StepWithParameter110Steps), 47);
         }
         
         private void TestLine47StepWithParameter110Steps()
@@ -2391,7 +2391,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine49StepWithParameter120()
         {
-            this.Test(this.TestLine49StepWithParameter120Steps, 49);
+            this.Test(new System.Action(this.TestLine49StepWithParameter120Steps), 49);
         }
         
         private void TestLine49StepWithParameter120Steps()
@@ -2439,7 +2439,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine50ExecuteWithParameter130()
         {
-            this.Test(this.TestLine50ExecuteWithParameter130Steps, 50);
+            this.Test(new System.Action(this.TestLine50ExecuteWithParameter130Steps), 50);
         }
         
         private void TestLine50ExecuteWithParameter130Steps()
@@ -2487,7 +2487,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine51ExecuteWithParameter140()
         {
-            this.Test(this.TestLine51ExecuteWithParameter140Steps, 51);
+            this.Test(new System.Action(this.TestLine51ExecuteWithParameter140Steps), 51);
         }
         
         private void TestLine51ExecuteWithParameter140Steps()
@@ -2535,7 +2535,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine61StepWithParameter110()
         {
-            this.Test(this.TestLine61StepWithParameter110Steps, 61);
+            this.Test(new System.Action(this.TestLine61StepWithParameter110Steps), 61);
         }
         
         private void TestLine61StepWithParameter110Steps()
@@ -2583,7 +2583,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine62StepWithParameter120()
         {
-            this.Test(this.TestLine62StepWithParameter120Steps, 62);
+            this.Test(new System.Action(this.TestLine62StepWithParameter120Steps), 62);
         }
         
         private void TestLine62StepWithParameter120Steps()
@@ -2631,7 +2631,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine64ExecuteWithParameter130()
         {
-            this.Test(this.TestLine64ExecuteWithParameter130Steps, 64);
+            this.Test(new System.Action(this.TestLine64ExecuteWithParameter130Steps), 64);
         }
         
         private void TestLine64ExecuteWithParameter130Steps()
@@ -2679,7 +2679,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine65ExecuteWithParameter140()
         {
-            this.Test(this.TestLine65ExecuteWithParameter140Steps, 65);
+            this.Test(new System.Action(this.TestLine65ExecuteWithParameter140Steps), 65);
         }
         
         private void TestLine65ExecuteWithParameter140Steps()
@@ -2727,7 +2727,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine75StepWithParameter110()
         {
-            this.Test(this.TestLine75StepWithParameter110Steps, 75);
+            this.Test(new System.Action(this.TestLine75StepWithParameter110Steps), 75);
         }
         
         private void TestLine75StepWithParameter110Steps()
@@ -2775,7 +2775,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine76StepWithParameter120()
         {
-            this.Test(this.TestLine76StepWithParameter120Steps, 76);
+            this.Test(new System.Action(this.TestLine76StepWithParameter120Steps), 76);
         }
         
         private void TestLine76StepWithParameter120Steps()
@@ -2823,7 +2823,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine77ExecuteWithParameter130()
         {
-            this.Test(this.TestLine77ExecuteWithParameter130Steps, 77);
+            this.Test(new System.Action(this.TestLine77ExecuteWithParameter130Steps), 77);
         }
         
         private void TestLine77ExecuteWithParameter130Steps()
@@ -2871,7 +2871,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SpecFlowTarget")]
         public virtual void TestLine79ExecuteWithParameter140()
         {
-            this.Test(this.TestLine79ExecuteWithParameter140Steps, 79);
+            this.Test(new System.Action(this.TestLine79ExecuteWithParameter140Steps), 79);
         }
         
         private void TestLine79ExecuteWithParameter140Steps()

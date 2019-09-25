@@ -484,8 +484,9 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 new CodeMethodReferenceExpression(
                     new CodeThisReferenceExpression(),
                     NamingHelper.TestWrapperMethodName),
-                new CodeMethodReferenceExpression(new CodeThisReferenceExpression(),
-                    NamingHelper.GetTestStepsName(feature, step)), new CodePrimitiveExpression(step.Location.Line)));
+                new CodeDelegateCreateExpression(new CodeTypeReference(typeof(Action)),
+                    new CodeThisReferenceExpression(), NamingHelper.GetTestStepsName(feature, step)),
+                new CodePrimitiveExpression(step.Location.Line)));
 
             _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(feature, step));
 
@@ -513,12 +514,14 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                 Name = NamingHelper.GetTestName(feature, step)
             };
 
+
             testMethod.Statements.Add(new CodeMethodInvokeExpression(
                 new CodeMethodReferenceExpression(
                     new CodeThisReferenceExpression(),
                     NamingHelper.TestWrapperMethodName),
-                new CodeMethodReferenceExpression(new CodeThisReferenceExpression(),
-                    NamingHelper.GetTestStepsName(feature, step)), new CodePrimitiveExpression(step.Location.Line)));
+                new CodeDelegateCreateExpression(new CodeTypeReference(typeof(Action)),
+                    new CodeThisReferenceExpression(), NamingHelper.GetTestStepsName(feature, step)),
+                new CodePrimitiveExpression(step.Location.Line)));
 
             _context.UnitTestGeneratorProvider.SetTestMethod(_context, testMethod, NamingHelper.GetTestName(feature, step));
 

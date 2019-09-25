@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="2.7.1" />
-    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.37" />
+    <PackageReference Include="PB.SpecFlowMaster.SpecFlowPlugin" Version="1.0.38" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
