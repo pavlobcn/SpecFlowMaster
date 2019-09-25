@@ -271,6 +271,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
  testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine06ExecuteWithParameterParam2")]
@@ -295,6 +296,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("executed Given step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
  testRunner.And(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine16StepWithParameterParam1")]
@@ -315,6 +317,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine17ExecuteWithParameterParam2")]
@@ -335,6 +338,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("step with parameter {0}", "20"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine26StepWithParameters")]
@@ -355,6 +359,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("execute with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine29ExecuteWithParameterParam2")]
@@ -383,6 +388,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("step with parameters", ((string)(null)), table2, "Given ");
 #line 30
  testRunner.Then(string.Format("executed When step with parameter {0}", "30"), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]

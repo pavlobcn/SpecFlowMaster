@@ -40,8 +40,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public void SetTestClass(TestClassGenerationContext generationContext, string featureTitle, string featureDescription)
         {
             BaseUnitTestGeneratorProvider.SetTestClass(generationContext, featureTitle, featureDescription);
-
-            GenerateMaster(generationContext);
         }
 
         public void SetTestClassCategories(TestClassGenerationContext generationContext, IEnumerable<string> featureCategories)
@@ -57,6 +55,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         public void FinalizeTestClass(TestClassGenerationContext generationContext)
         {
             BaseUnitTestGeneratorProvider.FinalizeTestClass(generationContext);
+
+            GenerateMaster(generationContext);
         }
 
         public void SetTestClassParallelize(TestClassGenerationContext generationContext)

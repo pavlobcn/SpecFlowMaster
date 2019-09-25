@@ -328,8 +328,6 @@ this.FeatureBackground();
         
         public virtual void FeatureBackground()
         {
-#line 4
-#line hidden
         }
         
         public virtual void Test(System.Action steps, int lineNumber)
@@ -544,6 +542,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -737,6 +736,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -930,6 +930,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1123,6 +1124,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1316,6 +1318,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1509,6 +1512,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1702,6 +1706,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1895,6 +1900,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1944,6 +1950,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -1993,6 +2000,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2042,6 +2050,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2091,6 +2100,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2138,6 +2148,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2185,6 +2196,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2232,6 +2244,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2279,6 +2292,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2326,6 +2340,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2373,6 +2388,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2420,6 +2436,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2467,6 +2484,7 @@ this.FeatureBackground();
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2514,6 +2532,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2561,6 +2580,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2608,6 +2628,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2655,6 +2676,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
  testRunner.And("executed When step with parameter 140", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2702,6 +2724,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2749,6 +2772,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2796,6 +2820,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -2843,6 +2868,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
     }
 }

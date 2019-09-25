@@ -61,7 +61,6 @@ Namespace Global.PB.SpecFlowMaster.Examples.VB
         End Sub
         
         Public Overridable Sub FeatureBackground()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",4)
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
@@ -374,8 +373,6 @@ Me.FeatureBackground
         End Sub
         
         Public Overridable Sub FeatureBackground()
-#ExternalSource("SpecFlowTarget.feature",4)
-#End ExternalSource
         End Sub
         
         Public Overridable Sub Test(ByVal steps As System.Action, ByVal lineNumber As Integer)
@@ -678,6 +675,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -687,7 +685,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine07StepWithParameter10Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -960,6 +957,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -969,7 +967,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine08StepWithParameter20Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -1242,6 +1239,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -1251,7 +1249,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine10StepWithParameter21Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -1524,6 +1521,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -1533,7 +1531,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine12ExecuteWithParameter29Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -1806,6 +1803,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -1815,7 +1813,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine13ExecuteWithParameter30Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2088,6 +2085,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2097,7 +2095,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine14ExecuteWithParameter40Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2370,6 +2367,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2379,7 +2377,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine16ExecuteWithParameter41Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2652,6 +2649,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2661,7 +2659,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine19StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2718,6 +2715,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",30)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2727,7 +2725,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine20StepWithParameter120Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2784,6 +2781,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",30)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2793,7 +2791,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine21ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2850,6 +2847,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",30)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2859,7 +2857,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine22ExecuteWithParameter140Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2916,6 +2913,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",30)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2925,7 +2923,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine34StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -2979,6 +2976,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",44)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -2988,7 +2986,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine35StepWithParameter120Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3042,6 +3039,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",44)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3051,7 +3049,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine36ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3105,6 +3102,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",44)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3114,7 +3112,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine37ExecuteWithParameter140Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3168,6 +3165,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",44)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3177,7 +3175,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine47StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3231,6 +3228,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",58)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3240,7 +3238,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine49StepWithParameter120Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3294,6 +3291,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",58)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3303,7 +3301,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine50ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3357,6 +3354,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",58)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3366,7 +3364,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine51ExecuteWithParameter140Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3420,6 +3417,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",58)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3429,7 +3427,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine61StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3483,6 +3480,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",72)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3492,7 +3490,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine62StepWithParameter120Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3546,6 +3543,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",72)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3555,7 +3553,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine64ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3609,6 +3606,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",72)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3618,7 +3616,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine65ExecuteWithParameter140Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3672,6 +3669,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",72)
  testRunner.And("executed When step with parameter 140", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3681,7 +3679,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine75StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3735,6 +3732,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3744,7 +3742,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine76StepWithParameter120Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3798,6 +3795,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3807,7 +3805,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine77ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3861,6 +3858,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -3870,7 +3868,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine79ExecuteWithParameter140Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",6)
  testRunner.Given("step with parameter 9", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -3924,6 +3921,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowTarget.feature",86)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
     End Class
 End Namespace

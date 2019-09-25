@@ -205,8 +205,6 @@ this.FeatureBackground();
         
         public virtual void FeatureBackground()
         {
-#line 4
-#line hidden
         }
         
         void System.IDisposable.Dispose()
@@ -265,6 +263,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine06ExecuteWithParameter20")]
@@ -297,6 +296,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine14StepWithParameter110")]
@@ -323,6 +323,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [Xunit.FactAttribute(DisplayName="TestLine15ExecuteWithParameter130")]
@@ -349,6 +350,7 @@ this.FeatureBackground();
  testRunner.And("executed Given step with parameter 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.And("executed When step with parameter 130", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]

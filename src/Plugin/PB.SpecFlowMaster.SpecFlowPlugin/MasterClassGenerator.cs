@@ -372,21 +372,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             var background = _context.Feature.Background;
 
             backgroundMethod.Attributes = MemberAttributes.Public;
-
-            AddLineDirective(backgroundMethod.Statements, background);
-
-            // TODO: handle background steps
-            /*
-            foreach (var step in background.Steps)
-                GenerateStep(backgroundMethod, step, null);
-                */
-
-            AddLineDirectiveHidden(backgroundMethod.Statements);
-        }
-
-        private void AddLineDirective(CodeStatementCollection statements, Background background)
-        {
-            AddLineDirective(statements, background.Location);
         }
 
         private void AddLineDirective(CodeStatementCollection statements, Location location)
@@ -502,7 +487,6 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
             AddActionStatementsForScenarioStep(feature, stepsMethod.Statements, scenario, step, paramToIdentifier);
 
             _context.TestClass.Members.Add(stepsMethod);
-
         }
 
         private void AddBackgroundLineTest(SpecFlowFeature feature, SpecFlowStep step)
@@ -595,6 +579,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     GenerateStep(statements, scenarioStep, paramToIdentifier, row, stepKeyWord, keyWord);
                 }
             }
+
+            AddLineDirectiveHidden(statements);
         }
 
         private void FixStepKeyWordForScenarioStep(Scenario scenario, SpecFlowStep executionStep, SpecFlowStep testingStep, out StepKeyword stepKeyWord, out string keyWord)
@@ -658,6 +644,8 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
                     }
                 }
             }
+
+            AddLineDirectiveHidden(statements);
         }
 
         private void GenerateStep(CodeStatementCollection statements,

@@ -1,14 +1,19 @@
-﻿Feature: SpecFlowScenarioOutline
-	Test to check which steps in scenario outline execution are really needed for good tests
+﻿Feature: SpecFlowIgnoreScenario
+	Test how scenario can be ignored
 
-Scenario Outline: Test with unnecessary steps and table as a parameter
-# This scenario step is unnecessary
-	Given step with parameters
-	| ParamValue |
-	| <Param1>   |
-	When execute with parameter <Param2>
-	Then executed When step with parameter <Param2>
-Examples:
-| Param1 | Param2 |
-| 10     | 20     |
-| 20     | 30     |
+Background:
+	Given step with parameter 10
+	When execute with parameter 20
+
+#IgnoreMasterScenario
+Scenario: Test with unnecessary steps. Will fail if not ignored
+	Given step with parameter 110
+	When execute with parameter 130
+
+Scenario: Test without unnecessary steps
+	Given step with parameter 110
+	When execute with parameter 130
+	Then executed Given step with parameter 10
+	And executed When step with parameter 20
+	And executed Given step with parameter 110
+	And executed When step with parameter 130

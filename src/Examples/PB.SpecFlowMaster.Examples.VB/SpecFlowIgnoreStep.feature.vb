@@ -61,7 +61,6 @@ Namespace Global.PB.SpecFlowMaster.Examples.VB
         End Sub
         
         Public Overridable Sub FeatureBackground()
-#End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",4)
 #End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",5)
@@ -159,8 +158,6 @@ Me.FeatureBackground
         End Sub
         
         Public Overridable Sub FeatureBackground()
-#ExternalSource("SpecFlowIgnoreStep.feature",4)
-#End ExternalSource
         End Sub
         
         Public Overridable Sub Test(ByVal steps As System.Action, ByVal lineNumber As Integer)
@@ -220,6 +217,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",19)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -229,7 +227,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine08ExecuteWithParameter20Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",5)
  testRunner.Given("step with parameter 10", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -259,6 +256,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",19)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -268,7 +266,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine11StepWithParameter110Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",5)
  testRunner.Given("step with parameter 10", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -298,6 +295,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",19)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -307,7 +305,6 @@ Me.FeatureBackground
         End Sub
         
         Private Sub TestLine12ExecuteWithParameter130Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",5)
  testRunner.Given("step with parameter 10", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -337,6 +334,7 @@ Me.FeatureBackground
 #End ExternalSource
 #ExternalSource("SpecFlowIgnoreStep.feature",19)
  testRunner.And("executed When step with parameter 130", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
     End Class
 End Namespace

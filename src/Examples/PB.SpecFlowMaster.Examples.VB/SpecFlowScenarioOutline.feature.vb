@@ -67,7 +67,6 @@ Namespace Global.PB.SpecFlowMaster.Examples.VB
          NUnit.Framework.TestCaseAttribute("20", "30", Nothing)>  _
         Public Overridable Sub TestWithoutUnnecessarySteps(ByVal param1 As String, ByVal param2 As String, ByVal exampleTags() As String)
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("Test without unnecessary steps", Nothing, exampleTags)
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",4)
 Me.ScenarioInitialize(scenarioInfo)
             Me.ScenarioStart
@@ -227,6 +226,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",8)
  testRunner.And(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -236,7 +236,6 @@ Me.ScenarioInitialize(scenarioInfo)
         End Sub
         
         Private Sub TestLine06ExecuteWithParameterParam2Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",5)
  testRunner.Given(String.Format("step with parameter {0}", "10"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -254,6 +253,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",8)
  testRunner.And(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "And ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -263,7 +263,6 @@ Me.ScenarioInitialize(scenarioInfo)
         End Sub
         
         Private Sub TestLine16StepWithParameterParam1Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",17)
  testRunner.When(String.Format("execute with parameter {0}", "20"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "When ")
 #End ExternalSource
@@ -275,6 +274,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",18)
  testRunner.Then(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Then ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -284,7 +284,6 @@ Me.ScenarioInitialize(scenarioInfo)
         End Sub
         
         Private Sub TestLine17ExecuteWithParameterParam2Steps()
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",16)
  testRunner.Given(String.Format("step with parameter {0}", "10"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Given ")
 #End ExternalSource
@@ -296,6 +295,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",18)
  testRunner.Then(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Then ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -305,7 +305,6 @@ Me.ScenarioInitialize(scenarioInfo)
         End Sub
         
         Private Sub TestLine26StepWithParametersSteps()
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",29)
  testRunner.When(String.Format("execute with parameter {0}", "20"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "When ")
 #End ExternalSource
@@ -317,6 +316,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",30)
  testRunner.Then(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Then ")
+#End ExternalSource
         End Sub
         
         <NUnit.Framework.TestAttribute(),  _
@@ -328,7 +328,6 @@ Me.ScenarioInitialize(scenarioInfo)
         Private Sub TestLine29ExecuteWithParameterParam2Steps()
             Dim table1 As TechTalk.SpecFlow.Table = New TechTalk.SpecFlow.Table(New String() {"ParamValue"})
             table1.AddRow(New String() {"10"})
-#End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",26)
  testRunner.Given("step with parameters", CType(Nothing,String), table1, "Given ")
 #End ExternalSource
@@ -342,6 +341,7 @@ Me.ScenarioInitialize(scenarioInfo)
 #End ExternalSource
 #ExternalSource("SpecFlowScenarioOutline.feature",30)
  testRunner.Then(String.Format("executed When step with parameter {0}", "30"), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Then ")
+#End ExternalSource
         End Sub
     End Class
 End Namespace
