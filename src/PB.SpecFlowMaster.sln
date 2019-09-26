@@ -53,6 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "PB.SpecFlowMaster.Examples.VB", "Examples\PB.SpecFlowMaster.Examples.VB\PB.SpecFlowMaster.Examples.VB.vbproj", "{DAE5B892-7BF5-4328-8FA8-E96B6ECAFAC0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PB.SpecFlowMaster.Examples.NetCore20", "Examples\PB.SpecFlowMaster.Examples.NetCore20\PB.SpecFlowMaster.Examples.NetCore20.csproj", "{18F89558-0FBE-4722-A870-528623CB6A24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16A9D0C5-C322-4CD3-9F0E-F8994CC3308C} = {16A9D0C5-C322-4CD3-9F0E-F8994CC3308C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +96,10 @@ Global
 		{DAE5B892-7BF5-4328-8FA8-E96B6ECAFAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE5B892-7BF5-4328-8FA8-E96B6ECAFAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE5B892-7BF5-4328-8FA8-E96B6ECAFAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F89558-0FBE-4722-A870-528623CB6A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F89558-0FBE-4722-A870-528623CB6A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F89558-0FBE-4722-A870-528623CB6A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F89558-0FBE-4722-A870-528623CB6A24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +114,7 @@ Global
 		{F66F1E99-4596-42C8-A71E-71B07DBC30E3} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 		{92302C5D-E04F-4462-8E18-C0C6AF5D2888} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 		{DAE5B892-7BF5-4328-8FA8-E96B6ECAFAC0} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
+		{18F89558-0FBE-4722-A870-528623CB6A24} = {5A7A5EDE-2F34-486B-9879-CBFD9009B7E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E928DCB-D0AE-4721-A9B1-CFADFD70BDAD}
