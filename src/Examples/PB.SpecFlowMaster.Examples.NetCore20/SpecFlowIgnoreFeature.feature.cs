@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PB.SpecFlowMaster.Examples.NetStandard20
+namespace PB.SpecFlowMaster.Examples.NetCore20
 {
     using TechTalk.SpecFlow;
     
