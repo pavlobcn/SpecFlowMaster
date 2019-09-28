@@ -1,7 +1,7 @@
 ﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>PB.SpecFlowMaster.SpecFlowPlugin</id>
-    <version>1.0.48</version>
+    <version>1.0.49</version>
     <title>SpecFlowMaster.SpecFlowPlugin</title>
     <authors>PB</authors>
     <owners>PB</owners>
@@ -31,10 +31,6 @@
 
     <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.dll" target="build\netstandard2.0"/>
     <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.pdb" target="build\netstandard2.0"/>
-    <!--
-    <file src="bin\$config$\netstandard2.0\Utf8Json.dll" target="build\netstandard2.0"/>
-    <file src="bin\$config$\netstandard2.0\System.Threading.Tasks.Extensions.dll" target="build\netstandard2.0"/>
-    -->
 
   </files>
 </package>

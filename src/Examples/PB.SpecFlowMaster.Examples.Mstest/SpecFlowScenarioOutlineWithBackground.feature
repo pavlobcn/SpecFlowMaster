@@ -8,8 +8,8 @@ Background:
 
 Scenario Outline: Test without unnecessary steps
 	Given step with parameters
-	| Param    |
-	| <Param1> |
+	| ParamValue |
+	| <Param1>   |
 	When execute with parameter <Param2>
 	Then executed Given step with parameter <Param1>
 	And executed When step with parameter <Param2>

@@ -622,10 +622,12 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         {
             foreach (Scenario scenario in feature.Children.OfType<Scenario>())
             {
+                ParameterSubstitution paramToIdentifier = null;
                 IEnumerable<TableRow> rows = new List<TableRow> { null };
                 if (scenario is ScenarioOutline scenarioOutline)
                 {
                     rows = scenario.Examples.SelectMany(exampleSet => exampleSet.TableBody);
+                    paramToIdentifier = CreateParamToIdentifierMapping(scenarioOutline);
                 }
 
                 foreach (TableRow row in rows)
@@ -640,7 +642,7 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
 
                     foreach (SpecFlowStep scenarioStep in scenario.Steps)
                     {
-                        GenerateStep(statements, scenarioStep, null, row, scenarioStep.StepKeyword, scenarioStep.Keyword);
+                        GenerateStep(statements, scenarioStep, paramToIdentifier, row, scenarioStep.StepKeyword, scenarioStep.Keyword);
                     }
                 }
             }
@@ -723,20 +725,28 @@ namespace PB.SpecFlowMaster.SpecFlowPlugin
         private static string GetCellValue(TableCell cell, ParameterSubstitution paramToIdentifier,
             TableRow parametersRow)
         {
-            var cellValue = cell.Value.Trim();
-            if (parametersRow == null)
+            try
             {
+                var cellValue = cell.Value.Trim();
+                if (parametersRow == null)
+                {
+                    return cellValue;
+                }
+
+                if (cellValue.StartsWith("<") && cellValue.EndsWith(">") &&
+                    paramToIdentifier.TryGetIdentifier(cellValue.Substring(1, cellValue.Length - 2), out int paramIndex))
+                {
+                    cellValue = parametersRow.Cells.ElementAt(paramToIdentifier[paramIndex].Value).Value;
+                    return cellValue;
+                }
+
                 return cellValue;
             }
-
-            if (cellValue.StartsWith("<") && cellValue.EndsWith(">") &&
-                paramToIdentifier.TryGetIdentifier(cellValue.Substring(1, cellValue.Length - 2), out int paramIndex))
+            catch (Exception e)
             {
-                cellValue = parametersRow.Cells.ElementAt(paramToIdentifier[paramIndex].Value).Value;
-                return cellValue;
+                Console.WriteLine(e);
+                throw;
             }
-
-            return cellValue;
         }
 
         private CodeExpression GetStringArrayExpression(IEnumerable<string> items, ParameterSubstitution paramToIdentifier, TableRow row)
