@@ -1,16 +1,17 @@
 ﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>PB.SpecFlowMaster.SpecFlowPlugin</id>
-    <version>1.0.49</version>
+    <id>SpecFlowMaster</id>
+    <version>0.9.0</version>
     <title>SpecFlowMaster.SpecFlowPlugin</title>
-    <authors>PB</authors>
-    <owners>PB</owners>
+    <authors>Pavlo Biriukov</authors>
+    <owners>Pavlo Biriukov</owners>
     <description>This is a Specflow Master Plugin for SpecFlow 3</description>
-    <summary></summary>
+    <summary>It allows to analyze existing feature file and find statements that do not affect tests.</summary>
     <language>en-US</language>
-
+    <projectUrl>https://github.com/pavlobcn/SpecFlowMaster</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>specflow</tags>
+    <license type="file">LICENSE.txt</license>
+    <tags>specflow bdd gherkin cucumber refactor</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.1">
         <dependency id="Utf8Json" version="1.3.7" />
@@ -32,5 +33,6 @@
     <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.dll" target="build\netstandard2.0"/>
     <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.pdb" target="build\netstandard2.0"/>
 
+    <file src="LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>
