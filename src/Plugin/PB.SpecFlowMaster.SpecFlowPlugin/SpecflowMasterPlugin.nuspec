@@ -1,0 +1,38 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SpecFlowMaster</id>
+    <version>0.9.2</version>
+    <title>SpecFlowMaster.SpecFlowPlugin</title>
+    <authors>Pavlo Biriukov</authors>
+    <owners>Pavlo Biriukov</owners>
+    <description>This is a Specflow Master Plugin for SpecFlow 3</description>
+    <summary>It allows to analyze existing feature file and find statements that do not affect tests.</summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/pavlobcn/SpecFlowMaster</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <tags>specflow bdd gherkin cucumber refactor</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="Utf8Json" version="1.3.7" />
+        <dependency id="BoDi" version="1.4.1" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Utf8Json" version="1.3.7" />
+        <dependency id="BoDi" version="1.4.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="build\**\*" target="build"/>
+
+    <file src="bin\$config$\net471\PB.SpecFlowMaster.SpecFlowPlugin.*" target="build\net471"/>
+    <file src="bin\$config$\net471\Utf8Json.dll" target="build\net471"/>
+    <file src="bin\$config$\net471\System.Threading.Tasks.Extensions.dll" target="build\net471"/>
+
+    <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.dll" target="build\netstandard2.0"/>
+    <file src="bin\$config$\netstandard2.0\PB.SpecFlowMaster.SpecFlowPlugin.pdb" target="build\netstandard2.0"/>
+
+    <file src="LICENSE.txt" target="LICENSE.txt" />
+  </files>
+</package>
