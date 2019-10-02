@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
-    <PackageReference Include="SpecFlowMaster" Version="0.9.1" />
+    <PackageReference Include="SpecFlowMaster" Version="0.9.2" />
   </ItemGroup>
 
   <ItemGroup>
