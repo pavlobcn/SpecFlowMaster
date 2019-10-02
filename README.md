@@ -2,17 +2,16 @@
 Tool for SpecFlow test analysis and improvements
 
 ## This is a plugin for [Specflow](https://github.com/techtalk/SpecFlow)
-It allows to find statements in test scenarious that does not affect the test.
-For example, it can find suspicious line that can be removed from test and test will be still green.
+It allows to find statements in test scenarious that do not affect tests.
+For example, it can find suspicious line that can be safely removed from test and test will be still green.
 
-This plugin can improve quality of SpecFlow tests. Very usefull during refactoring as it can help problem lines in your tests.
+This plugin can improve quality of SpecFlow tests. Very usefull during refactoring as it can help to identify problem lines in your tests.
 
 ### Examples
 Solution contains [Examples](/src/Examples) for different test providers, languages and platforms.
 
 ### Support
-- .NET Framework 4.7.1 and higher
-- .NET Core
+- .NET Framework 4.7.1, .NET Core 2.0 and higher
 - Specflow 3.0 and higher
 - C# and VB
 
